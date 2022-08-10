@@ -31,7 +31,7 @@ function Body() {
                 <div className="group-list">
                 {filteredGroups.map(group => {
                     return (
-                        <GroupBox text={group.text} color={group.color} />
+                        <GroupBox text={group.text} color={group.color} url={group.url} />
                     )
                 })}
                 </div>
@@ -39,7 +39,7 @@ function Body() {
                 <div className="group-list">
                 {groups.map(group => {
                     return (
-                        <GroupBox text={group.text} color={group.color} />
+                        <GroupBox text={group.text} color={group.color} url={group.url} />
                     )
                 })}
                 </div>

@@ -8,12 +8,12 @@
     flex-direction: row;
     align-items: center;
     margin-bottom: 12px;
+    text-decoration: none;
 }
 
 .img {
     width: 65px;
     height: 65px;
-    /* background-color: blue; */
     border-radius: 15px;
     margin: 0 8px;
 }
