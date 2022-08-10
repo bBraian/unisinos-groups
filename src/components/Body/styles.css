@@ -8,10 +8,17 @@
     flex-direction: column;
 }
 
+
 .input-styled {
-    position: relative;
-    width: 80%;
-    margin-bottom: 30px;
+    position: fixed;
+    width: 100%;
+    top: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+    height: 90px;
+    background-color: white;
 }
 
 .icon {
@@ -21,13 +28,14 @@
     position: absolute;
     box-sizing:border-box;
     top:50%;
-    left:2px;
+    left:10%;
     transform: translateY(-50%);
     color: #262D63;
 }
 
 .search-input {
-    width: 100%;
+    width: 80%;
+    max-width: 500px;
     height: 45px;
     border-radius: 18px;
     border: 1px solid #262D63;
@@ -35,8 +43,12 @@
 }
 
 .group-list {
+    max-width: 500px;
     width: 80%;
     min-height: 500px;
     overflow-y: scroll;
+    z-index: 1;
+    margin-top: 75px;
+    position: relative;
 }
 

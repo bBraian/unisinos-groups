@@ -17,15 +17,15 @@ function Body() {
     : [];
     return (
         <div className="main">
-            <div className="input-styled">
-                <div className="icon"><FaSearch /></div>
-                <input 
-                    type="text" 
-                    className="search-input" 
-                    placeholder="Buscar..."
-                    onChange={e => setSearch(e.target.value)}
-                />
-            </div> 
+                <div className="input-styled">
+                    <div className="icon"><FaSearch /></div>
+                    <input 
+                        type="text" 
+                        className="search-input" 
+                        placeholder="Buscar..."
+                        onChange={e => setSearch(e.target.value)}
+                    />
+                </div> 
 
             {search.length > 0 ? (
                 <div className="group-list">
