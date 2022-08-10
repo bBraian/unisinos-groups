@@ -10,6 +10,7 @@ function Header() {
                     <img src={Unisinos} alt="logo_unisinos" className="unisinos-logo" />
                     <select className="header-select">
                         <option value="1">Análise e Desenvolvimento de Sistemas</option>
+                        <option value="1">Ciência da Computação</option>
                     </select>
                 </div>
             </div>

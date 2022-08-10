@@ -1,0 +1,27 @@
+.group-box {
+    width: 100%;
+    border: 1px solid #D9D9D9;
+    height: 80px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: space;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.img {
+    width: 65px;
+    height: 65px;
+    /* background-color: blue; */
+    border-radius: 15px;
+    margin: 0 8px;
+}
+
+.text {
+    width: 60%;
+    margin: 0 8px;
+    font-size: large;
+    color: #262D63;
+    font-weight: bold;
+}

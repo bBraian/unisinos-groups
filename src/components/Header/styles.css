@@ -2,17 +2,17 @@
    width: 100%;
    display: flex;
    justify-content: center;
+   margin-bottom: 110px;
 }
 
 .background {
     background-color: #262D63;
     width: 108vw;
-    height: 12vh;
-    min-height: 110px;
-    min-width: 414px;
+    height: 110px;
     overflow: hidden;
     position: fixed;
     border-radius: 0 0 140px 140px;
+    box-shadow: 0px 2px 20px 6px #ADADAD;
 }
 
 .header-align {
