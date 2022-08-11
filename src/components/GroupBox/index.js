@@ -1,10 +1,10 @@
 import React from "react";
 import './styles.css';
 
-function GroupBox({text, color, url}) {
+function GroupBox({text, image, whatsapp_link}) {
     return (
-        <a href={url} className="group-box">
-            <img src={color} className="img" alt={text} />
+        <a href={whatsapp_link} className="group-box">
+            <img src={image} className="img" alt={text} />
             {/* <div className="img" style={{backgroundImage: `${color}`}}></div> */}
             <div className="text">{text}</div>
         </a>
