@@ -1,5 +1,5 @@
 .main {
-    position: absolute;
+    /* position: absolute; */
     margin-top: 30px;
     width: 100%;
     display: flex;
@@ -17,7 +17,7 @@
     justify-content: center;
     align-items: center;
     z-index: 9;
-    height: 90px;
+    height: 80px;
     background-color: white;
 }
 
@@ -27,8 +27,11 @@
     padding: 4px 12px;
     position: absolute;
     box-sizing:border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     top:50%;
-    left:10%;
+    left: 10%;
     transform: translateY(-50%);
     color: #262D63;
 }
@@ -39,17 +42,20 @@
     height: 45px;
     border-radius: 18px;
     border: 1px solid #262D63;
-    padding: 0 45px;
+    padding: 0 25px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
 }
 
 .group-list {
     max-width: 500px;
     width: 80%;
-    min-height: 500px;
+    min-height: 75vh;
 /*     overflow-y: scroll; */
     z-index: 1;
-    margin-top: 75px;
+    margin-top: 55px;
     position: relative;
-    margin-bottom: 98px;
+    margin-bottom: 15px;
 }
+
 
