@@ -22,12 +22,12 @@ function Footer() {
     return (
         <div className="footer">
             <div className="text-footer">Feito com amor e ódio por Braian <FaHeart /></div>
-            <a className="whatsapp-link-footer" onClick={() => openSuportModal()}>
-                <div className="suport-button">
+            <div className="whatsapp-link-footer">
+                <button className="suport-button" onClick={() => openSuportModal()}>
                     <div className="text-button">Suporte</div>
                     <div className="icon-button"><FaWhatsapp /></div>
-                </div>
-            </a>
+                </button>
+            </div>
         </div>
     );
 }

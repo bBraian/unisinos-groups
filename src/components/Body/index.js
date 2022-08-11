@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './styles.css';
 import GroupBox from "../GroupBox";
 import { grupos } from '../../data/groups.js';
 
-function Body() {
+function Body({selectedClass}) {
     const [search, setSearch] = useState('');
-    const [groups, setGroups] = useState([]);
-
-    useEffect(() => {
-        setGroups(grupos);
-    }, []);
+    const [groups, setGroups] = useState(grupos);
 
     const filteredGroups = search.length > 0
     ? groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase()))
@@ -38,7 +34,7 @@ function Body() {
                 <div className="group-list">
                 {groups.map(group => {
                     return (
-                        <GroupBox text={group.text} color={group.color} url={group.url} />
+                        group.curso == selectedClass ? <GroupBox text={group.text} color={group.color} url={group.url} /> : ""
                     )
                 })}
                 </div>
