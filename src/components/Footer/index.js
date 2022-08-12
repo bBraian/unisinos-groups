@@ -8,10 +8,10 @@ function Footer() {
     function openSuportModal() {
         Swal.fire({
             title: 'Atenção',
-            text: 'Somente use o suporte para mandar novas cadeiras a serem adicionadas ou para relatar problemas, se não, não enche meu saco por favor, com amor, Braian',
+            text: 'Use o suporte somente para mandar novas cadeiras a serem adicionadas ou para relatar problemas ou correções!',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Sim',
+            confirmButtonText: 'Continuar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
