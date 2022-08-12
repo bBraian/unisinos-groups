@@ -19,6 +19,10 @@ export const grupos = [
     { course: 1, text: 'Programação para Dispositivos Móveis', image: 'https://i.imgur.com/7ukXiZK.png', whatsapp_link: 'https://chat.whatsapp.com/KGtK9Iih2YZIsPJK5jQJKB'},
     { course: 1, text: 'Processos de Teste de Software', image: 'https://i.imgur.com/NBOBiCR.png', whatsapp_link: 'https://chat.whatsapp.com/JvfRlKdBEQQLPZuTvBOWDn'},
     { course: 1, text: 'Melhoria de Processo de Software', image: 'https://i.imgur.com/ojvdDCW.png', whatsapp_link: 'https://chat.whatsapp.com/Cn6W9sv6ypWCgpcKI19nbD'},
+    { course: 1, text: 'Programação II', image: '', whatsapp_link: 'https://chat.whatsapp.com/L79kkc6R3sZ0bSGhzZxmmU'},
+    { course: 1, text: 'Laboratório II', image: '', whatsapp_link: 'https://chat.whatsapp.com/I3jNvxdI4R7JMmJ3oXdlJp'},
+    { course: 1, text: 'Empreendedorismo e Souções de Problemas', image: '', whatsapp_link: 'https://chat.whatsapp.com/JEtoR5G6m2VBu95S0Hbyz6'},
+    { course: 1, text: 'Gerência de Projeto de Software', image: '', whatsapp_link: 'https://chat.whatsapp.com/CfRFUsB4JhHC9z7lCouYzg'},
 
-    { course: 2, text: 'Ciência', image: '', whatsapp_link: true },
+    { course: 2, text: 'Ciência', image: '', whatsapp_link: ''},
 ]
