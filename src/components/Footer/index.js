@@ -11,7 +11,7 @@ function Footer() {
             text: 'Somente use o suporte para mandar novas cadeiras a serem adicionadas ou para relatar problemas, se não, não enche meu saco por favor, com amor, Braian',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Sim',
+            confirmButtonText: 'Continuar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
