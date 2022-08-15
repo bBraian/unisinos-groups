@@ -24,5 +24,5 @@ export const grupos = [
     { course: 1, text: 'Empreendedorismo e Souções de Problemas', image: '', whatsapp_link: 'https://chat.whatsapp.com/JEtoR5G6m2VBu95S0Hbyz6'},
     { course: 1, text: 'Gerência de Projeto de Software', image: '', whatsapp_link: 'https://chat.whatsapp.com/CfRFUsB4JhHC9z7lCouYzg'},
 
-    { course: 2, text: 'Ciência', image: '', whatsapp_link: ''},
+    { course: 2, text: 'Cálculo Diferencial', image: 'https://i.imgur.com/t7xyXDy.png', whatsapp_link: 'https://chat.whatsapp.com/LEhtY60hcju69BIRfXWevx'},
 ]
