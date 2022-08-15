@@ -32,6 +32,7 @@ export const grupos = [
     { course: 1, text: 'Matemática para Computação', image: '', whatsapp_link: 'https://chat.whatsapp.com/JWZMpVHiIIM4aauTmBue3X'},
     { course: 1, text: 'Comércio Eletrônico', image: '', whatsapp_link: 'https://chat.whatsapp.com/G4xlPUs6urY6IsakFzBFQ7'},
     { course: 1, text: 'Relacionamento e Marketing Virtual', image: '', whatsapp_link: 'https://chat.whatsapp.com/LNnQkygixWMCGU97cAZdVL'},
+    { course: 1, text: 'Inovação Social', image: '', whatsapp_link: 'https://chat.whatsapp.com/C2EP5a0OoZX3gFf9vVmaKv'},
 
     { course: 2, text: 'Cálculo Diferencial', image: 'https://i.imgur.com/t7xyXDy.png', whatsapp_link: 'https://chat.whatsapp.com/LEhtY60hcju69BIRfXWevx'},
     { course: 2, text: 'Segurança da Informação', image: 'https://i.imgur.com/WGYShLx.png', whatsapp_link: 'https://chat.whatsapp.com/LTaeveve7JsAqNHJrkGrGq'},
