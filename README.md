@@ -1,4 +1,4 @@
-![App Cover](./src/assets/capa.png)
+![App Cover](./src/assets/Capa.png)
 
 # Getting Started with Create React App
 
