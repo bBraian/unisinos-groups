@@ -11,13 +11,12 @@ function Body({selectedClass}) {
         setGroups(grupos);
     }, [])
 
-    const filteredGroups = search.length > 0
-    ? groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase()))
-    : [];
+    const filteredGroups = search.length > 0 ? 
+    groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase())) : [];
+    
     return (
         <div className="main">
             <div className="input-styled">
-                {/* <div className="icon"><FaSearch /></div> */}
                 <input 
                     type="text" 
                     className="search-input" 
@@ -28,17 +27,17 @@ function Body({selectedClass}) {
 
             {search.length > 0 ? (
                 <div className="group-list">
-                {filteredGroups.map(group => {
+                {filteredGroups.map((group, index) => {
                     return (
-                        group.course == selectedClass ? <GroupBox text={group.text} image={group.image} whatsapp_link={group.whatsapp_link} /> : ""
+                        group.course == selectedClass ? <GroupBox key={index} text={group.text} image={group.image} whatsapp_link={group.whatsapp_link} /> : ""
                     )
                 })}
                 </div>
             ) : (
                 <div className="group-list">
-                {groups.map(group => {
+                {groups.map((group, index) => {
                     return (
-                        group.course == selectedClass ? <GroupBox text={group.text} image={group.image} whatsapp_link={group.whatsapp_link} /> : ""
+                        group.course == selectedClass ? <GroupBox key={index} text={group.text} image={group.image} whatsapp_link={group.whatsapp_link} /> : ""
                     )
                 })}
                 </div>

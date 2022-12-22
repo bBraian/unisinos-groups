@@ -1,7 +1,5 @@
-import React from "react";
 import './styles.css';
-import { FaHeart } from 'react-icons/fa';
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaHeart, FaWhatsapp } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 function Footer() {
