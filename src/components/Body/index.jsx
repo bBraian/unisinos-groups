@@ -13,7 +13,7 @@ function Body({selectedClass}) {
     }, [])
 
     function handleFilterBySemester(semester) {
-
+        //filter with search filter and the selected semester
     }
 
     const filteredGroups = search.length > 0 ? 
