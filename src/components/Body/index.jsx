@@ -12,12 +12,14 @@ function Body({selectedClass}) {
         setGroups(grupos);
     }, [])
 
-    function handleFilterBySemester(semester) {
-        //filter with search filter and the selected semester
-    }
 
-    const filteredGroups = search.length > 0 ? 
-    groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase())) : [];
+    let filteredGroups = [];
+    if(search.length > 0) {
+        filteredGroups = groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase()));
+    }
+    if(filter != '') {
+        filteredGroups = groups.filter(group => group.semester == filter);
+    }
     
     return (
         <div className="main">
@@ -28,7 +30,7 @@ function Body({selectedClass}) {
                     placeholder="Buscar..."
                     onChange={e => setSearch(e.target.value)}
                 />
-                <select className="select-filter" onChange={handleFilterBySemester}>
+                <select className="select-filter" onChange={e => setFilter(e.target.value)}>
                     <option>Semestre</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -37,7 +39,7 @@ function Body({selectedClass}) {
                 </select>
             </div> 
 
-            {search.length > 0 ? (
+            {search.length > 0 | filter != '' ? (
                 <div className="group-list">
                 {filteredGroups.map((group, index) => {
                     return (
