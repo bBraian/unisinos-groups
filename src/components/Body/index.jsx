@@ -7,19 +7,21 @@ function Body({selectedClass}) {
     const [search, setSearch] = useState('');
     const [groups, setGroups] = useState([]);
     const [filter, setFilter] = useState('');
+    const [filteredGroups, setFilteredGroups] = useState([]);
 
     useEffect(() => {
         setGroups(grupos);
     }, [])
 
+    useEffect(() => {
+        if(search.length > 0) {
+            setFilteredGroups(groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase())));
+        }
+        if(filter != '') {
+            setFilteredGroups(groups.filter(group => group.semester == filter));
+        }
+    }, [search, filter])
 
-    let filteredGroups = [];
-    if(search.length > 0) {
-        filteredGroups = groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase()));
-    }
-    if(filter != '') {
-        filteredGroups = groups.filter(group => group.semester == filter);
-    }
     
     return (
         <div className="main">
