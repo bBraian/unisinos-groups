@@ -33,7 +33,7 @@ function Body({selectedClass}) {
                     onChange={e => setSearch(e.target.value)}
                 />
                 <select className="select-filter" onChange={e => setFilter(e.target.value)}>
-                    <option>Semestre</option>
+                    <option value=''>Semestre</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
