@@ -1,5 +1,5 @@
 import './styles.css';
-import Unisinos from '../../assets/unisinos.png';
+import Unisinos from '../../assets/uni.png';
 
 function Header({setSelectedClass}) {
     return (
