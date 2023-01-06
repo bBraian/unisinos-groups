@@ -1,4 +1,3 @@
-import React from "react";
 import './styles.css';
 
 function GroupBox({text, image, whatsapp_link}) {

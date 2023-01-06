@@ -1,4 +1,3 @@
-import React from "react";
 import './styles.css';
 import Unisinos from '../../assets/unisinos.png';
 
