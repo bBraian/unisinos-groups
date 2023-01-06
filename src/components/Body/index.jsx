@@ -6,13 +6,22 @@ import { grupos } from '../../data/groups.js';
 function Body({selectedClass}) {
     const [search, setSearch] = useState('');
     const [groups, setGroups] = useState([]);
+    const [filter, setFilter] = useState('');
+    const [filteredGroups, setFilteredGroups] = useState([]);
 
     useEffect(() => {
         setGroups(grupos);
     }, [])
 
-    const filteredGroups = search.length > 0 ? 
-    groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase())) : [];
+    useEffect(() => {
+        if(search.length > 0) {
+            setFilteredGroups(groups.filter(group => group.text.toLowerCase().includes(search.toLowerCase())));
+        }
+        if(filter != '') {
+            setFilteredGroups(groups.filter(group => group.semester == filter));
+        }
+    }, [search, filter])
+
     
     return (
         <div className="main">
@@ -23,9 +32,16 @@ function Body({selectedClass}) {
                     placeholder="Buscar..."
                     onChange={e => setSearch(e.target.value)}
                 />
+                <select className="select-filter" onChange={e => setFilter(e.target.value)}>
+                    <option value=''>Semestre</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
             </div> 
 
-            {search.length > 0 ? (
+            {search.length > 0 | filter != '' ? (
                 <div className="group-list">
                 {filteredGroups.map((group, index) => {
                     return (
