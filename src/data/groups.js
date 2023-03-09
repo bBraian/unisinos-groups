@@ -38,7 +38,7 @@ export const grupos = [
     { course: 1, semester: 6, text: 'Comércio Eletrônico', image: '', whatsapp_link: 'https://chat.whatsapp.com/G4xlPUs6urY6IsakFzBFQ7'},
     { course: 1, semester: 6, text: 'Relacionamento e Marketing Virtual', image: '', whatsapp_link: 'https://chat.whatsapp.com/LNnQkygixWMCGU97cAZdVL'},
     { course: 1, semester: 6, text: 'Inovação Social', image: '', whatsapp_link: 'https://chat.whatsapp.com/C2EP5a0OoZX3gFf9vVmaKv'},
-    
+    { course: 1, semester: 7, text: 'América Latina Desenvolvimento e Sustentabilidade', image: '', whatsapp_link: 'https://chat.whatsapp.com/HO3IFWJCzX14lhyt3RwJf9'},
 
     { course: 2, semester: 1, text: 'Cálculo Diferencial', image: 'https://i.imgur.com/t7xyXDy.png', whatsapp_link: 'https://chat.whatsapp.com/LEhtY60hcju69BIRfXWevx'},
     { course: 2, semester: 1, text: 'Segurança da Informação', image: 'https://i.imgur.com/WGYShLx.png', whatsapp_link: 'https://chat.whatsapp.com/LTaeveve7JsAqNHJrkGrGq'},
