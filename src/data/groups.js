@@ -32,6 +32,7 @@ export const grupos = [
     { course: 1, semester: 5, text: 'Engenharia de Software - Requisitos', image: '', whatsapp_link: 'https://chat.whatsapp.com/BwxnmHQv4k5ErV8wOXHBNA'},
     { course: 1, semester: 5, text: 'Fundamentos de Sistemas Operacionais', image: '', whatsapp_link: 'https://chat.whatsapp.com/KRoL0FFulE1CnkPFGejs8c'},
     { course: 1, semester: 5, text: 'Tecnocultura', image: '', whatsapp_link: 'https://chat.whatsapp.com/Gd8l8u8hTIr1rZ6wU3WPaQ'},
+    { course: 1, semester: 5, text: 'Avaliação e Seleção de Soluções Técnicas e ROI', image: '', whatsapp_link: 'https://chat.whatsapp.com/Kf3wSHgsivc1R1yDedeowi'},
     { course: 1, semester: 5, text: 'Projeto Final I', image: 'https://i.imgur.com/DULe9uI.png', whatsapp_link: 'https://chat.whatsapp.com/Lhk3G6AxRMD0Wayi4vWDeU'},
     { course: 1, semester: 6, text: 'Projeto Final II', image: 'https://i.imgur.com/M1J5vtX.png', whatsapp_link: 'https://chat.whatsapp.com/HhQJjftPEdV71nWXeayRfh'},
     { course: 1, semester: 6, text: 'Raciocínio Lógico', image: '', whatsapp_link: 'https://chat.whatsapp.com/BpRTMHJa6RpHIhjdcss3ZN'},
