@@ -7,7 +7,6 @@ import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [selectedClass, setSelectedClass] = useState(1);
-
   return (
     <div className="App">
       <Header setSelectedClass={setSelectedClass} />
