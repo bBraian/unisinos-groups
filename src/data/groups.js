@@ -7,6 +7,8 @@ export const grupos = [
     { course: 1, semester: 1, text: 'Arquitetura de Software', image: 'https://i.imgur.com/xGuwLwv.png', whatsapp_link: 'https://chat.whatsapp.com/HvVqtjvVcYy14EvwbZs9ns'},
     { course: 1, semester: 1, text: 'Segurança da Informação', image: 'https://i.imgur.com/WGYShLx.png', whatsapp_link: 'https://chat.whatsapp.com/LTaeveve7JsAqNHJrkGrGq'},
     { course: 1, semester: 1, text: 'Design de IHC', image: 'https://i.imgur.com/xVCaiK9.png', whatsapp_link: 'https://chat.whatsapp.com/KYAWmDkKkRFC08fRgbJodP'},
+    { course: 1, semester: 1, text: 'Processo de Software', image: '', whatsapp_link: 'https://chat.whatsapp.com/EQjSszFmyDY6CqDFT017H2'},
+    { course: 1, semester: 1, text: 'Introdução à Computação e Suas Aplicações', image: '', whatsapp_link: 'https://chat.whatsapp.com/EBfLcyiJ17vHWgXrCuTVGN'},
     { course: 1, semester: 2, text: 'Fundamentos de Banco de Dados', image: 'https://i.imgur.com/w3UfoAQ.png', whatsapp_link: 'https://chat.whatsapp.com/Kr3RYjLQRFL2UlTLXkbt5I'},
     { course: 1, semester: 2, text: 'Fundamentos de Redes de Computadores', image: 'https://i.imgur.com/fm68fYL.png', whatsapp_link: 'https://chat.whatsapp.com/C9VSZqx8qZC2OHeWOAx3kf'},
     { course: 1, semester: 2, text: 'Programação I', image: '', whatsapp_link: 'https://chat.whatsapp.com/CLk9ZVTPXUsCbfOCTXnoVc'},
