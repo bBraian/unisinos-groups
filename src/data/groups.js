@@ -25,6 +25,7 @@ export const grupos = [
     { course: 1, semester: 4, text: 'Logística e Distribuição', image: '', whatsapp_link: 'https://chat.whatsapp.com/J8AcbRTd0a85PkWnjVCKSi'},
     { course: 1, semester: 4, text: 'Melhoria de Processo de Software', image: 'https://i.imgur.com/ojvdDCW.png', whatsapp_link: 'https://chat.whatsapp.com/Cn6W9sv6ypWCgpcKI19nbD'},
     { course: 1, semester: 4, text: 'Programação II', image: '', whatsapp_link: 'https://chat.whatsapp.com/L79kkc6R3sZ0bSGhzZxmmU'},
+    { course: 1, semester: 4, text: 'Engenharia de Software: Análise', image: '', whatsapp_link: 'https://chat.whatsapp.com/CkpE62gDba8LjIqX9tB7i8'},
     { course: 1, semester: 4, text: 'Laboratório II', image: '', whatsapp_link: 'https://chat.whatsapp.com/I3jNvxdI4R7JMmJ3oXdlJp'},
     { course: 1, semester: 4, text: 'Gestão por Processos', image: '', whatsapp_link: 'https://chat.whatsapp.com/KbQY6IfHxbB1yYbJT7aPel'},
     { course: 1, semester: 4, text: 'Negociação Empresarial', image: '', whatsapp_link: 'https://chat.whatsapp.com/EzFxft7vd1JGQn5nlOH9Mu'},
