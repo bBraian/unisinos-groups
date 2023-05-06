@@ -17,6 +17,7 @@ export const grupos = [
     { course: 1, semester: 2, text: 'Arquitetura da Informação', image: '', whatsapp_link: 'https://chat.whatsapp.com/LwTq2bt3HrH6HsGRghvwSy'},
     { course: 1, semester: 3, text: 'Gestão de Sistemas de Informação', image: 'https://i.imgur.com/s9dnY9N.png', whatsapp_link: 'https://chat.whatsapp.com/L0SjUzH7MdaHzMQ0Hqvv7Y'},
     { course: 1, semester: 3, text: 'Gerência da Configuração de Software', image: 'https://i.imgur.com/l2Ui1rr.png', whatsapp_link: 'https://chat.whatsapp.com/D4HK2HICzzG3Kr37Ci6iR9'},
+    { course: 1, semester: 3, text: 'Gerência de Projeto de Software', image: '', whatsapp_link: 'https://chat.whatsapp.com/CfRFUsB4JhHC9z7lCouYzg'},
     { course: 1, semester: 3, text: 'Cálculo Diferencial', image: 'https://i.imgur.com/t7xyXDy.png', whatsapp_link: 'https://chat.whatsapp.com/LEhtY60hcju69BIRfXWevx'},
     { course: 1, semester: 3, text: 'Projeto de Sistemas Digitais', image: 'https://i.imgur.com/N9hQVVu.png', whatsapp_link: 'https://chat.whatsapp.com/FP3Js5u74gV8wpqra5ttnj'},
     { course: 1, semester: 3, text: 'Métricas e gerência de projetos', image: 'https://i.imgur.com/EjS6aBn.png', whatsapp_link: 'https://chat.whatsapp.com/JE2NtHtoEzfF9IuFYe2wr7'},
