@@ -19,6 +19,7 @@ export const grupos = [
     { course: 1, semester: 3, text: 'Engenharia de Software: Projeto', image: '', whatsapp_link: 'https://chat.whatsapp.com/GuCGgkEjtKDAlcDMxuoVfD'},
     { course: 1, semester: 3, text: 'Gestão Inf. Conhecimento', image: '', whatsapp_link: 'https://chat.whatsapp.com/JVUVatsa2JSALtUWcOUXic'},
     { course: 1, semester: 3, text: 'Sistemas Integrados', image: '', whatsapp_link: 'https://chat.whatsapp.com/Gz3paOVbZTJCiYP7vJ4pYO'},
+    { course: 1, semester: 3, text: 'Aval/Sel - Solu Tec e ROI', image: '', whatsapp_link: 'https://chat.whatsapp.com/Kf3wSHgsivc1R1yDedeowi'},
     { course: 1, semester: 3, text: 'Gestão de Sistemas de Informação', image: 'https://i.imgur.com/s9dnY9N.png', whatsapp_link: 'https://chat.whatsapp.com/L0SjUzH7MdaHzMQ0Hqvv7Y'},
     { course: 1, semester: 3, text: 'Gerência da Configuração de Software', image: 'https://i.imgur.com/l2Ui1rr.png', whatsapp_link: 'https://chat.whatsapp.com/D4HK2HICzzG3Kr37Ci6iR9'},
     { course: 1, semester: 3, text: 'Cálculo Diferencial', image: 'https://i.imgur.com/t7xyXDy.png', whatsapp_link: 'https://chat.whatsapp.com/LEhtY60hcju69BIRfXWevx'},
