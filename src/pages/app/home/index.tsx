@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { SearchInput } from '@/components/search-input'
 import { LoadingSkeleton } from '@/components/loading-skeleton'
 import { NoFoundSearch } from '@/components/not-found-search'
@@ -16,7 +16,10 @@ const data = [
 export function Home() {
   const [searchValue, setSearchValue] = useState('')
   const [loading, setLoading] = useState(false)
-  const [intervalTimeShowing, setIntervalTimeShowing] = useState("day")
+
+  useEffect(() => {
+    setLoading(false)
+  }, [searchValue])
   return (
     <>
       <Helmet title="Home" />
@@ -37,7 +40,7 @@ export function Home() {
             <NoFoundSearch />
           ) : (
             <Fragment>
-              {data.map((s, idx) => (
+              {data.map(() => (
                 <ClassItem key={1} name="teste" />
               ))}
               {/* <p className="text-muted-foreground font-semibold">

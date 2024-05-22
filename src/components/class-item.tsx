@@ -1,4 +1,4 @@
-export function ClassItem({name, key}: any) {
+export function ClassItem({name}: any) {
   return (
     <div className="flex flex-col p-4 w-full border-2 border-border rounded-md gap-1 relative hover:bg-accent">
       <div className="inline-flex justify-between">
