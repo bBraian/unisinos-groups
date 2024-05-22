@@ -4,6 +4,8 @@ import { AppLayout } from './pages/layouts/app'
 import { AuthLayout } from './pages/layouts/auth'
 import { SignIn } from './pages/auth/sign-in'
 import { Home } from './pages/app/home'
+import { AdminLayout } from './pages/layouts/admin'
+import { Admin } from './pages/app/admin'
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,13 @@ export const router = createBrowserRouter([
       { path: '', element: <SignIn /> },
     ],
   },
+  {
+    path: '/admin',
+    element: <AdminLayout />,
+    children: [
+      { path: '', element: <Admin /> },
+    ],
+  }
   
   
 ])
