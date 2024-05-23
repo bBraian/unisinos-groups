@@ -4,14 +4,7 @@ import { SearchInput } from '@/components/search-input'
 import { LoadingSkeleton } from '@/components/loading-skeleton'
 import { NoFoundSearch } from '@/components/not-found-search'
 import { ClassItem } from '@/components/class-item'
-
-const data = [
-  {id: 1, name: '123'},
-  {id: 1, name: '123'},
-  {id: 1, name: '123'},
-  {id: 1, name: '123'}
-]
-
+import { grupos } from '../../../@fakeDB/groups.ts'
 
 export function Home() {
   const [searchValue, setSearchValue] = useState('')
@@ -25,7 +18,7 @@ export function Home() {
       <Helmet title="Home" />
       <div className='flex flex-col gap-4 flex-1 p-2 max-w-4xl'>
         <h1 className="text-muted-foreground font-semibold text-2xl">
-          Cadeiras disponíveis (165)
+          Cadeiras disponíveis ({grupos.length})
         </h1>
         <SearchInput
           value={searchValue}
@@ -36,12 +29,12 @@ export function Home() {
         <main className="flex flex-col gap-4">
           {loading ? (
             <LoadingSkeleton amountItems={4} />
-          ) : data.length === 0 ? (
+          ) : grupos.length === 0 ? (
             <NoFoundSearch />
           ) : (
             <Fragment>
-              {data.map(() => (
-                <ClassItem key={1} name="teste" />
+              {grupos.map((group) => (
+                <ClassItem key={group.id} props={group} />
               ))}
               {/* <p className="text-muted-foreground font-semibold">
                 Não há mais registros
