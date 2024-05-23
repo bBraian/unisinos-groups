@@ -28,7 +28,7 @@ export function Home() {
         />
         <main className="flex flex-col gap-4">
           {loading ? (
-            <LoadingSkeleton amountItems={4} />
+            <LoadingSkeleton />
           ) : grupos.length === 0 ? (
             <NoFoundSearch />
           ) : (

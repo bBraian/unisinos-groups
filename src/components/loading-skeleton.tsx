@@ -1,46 +1,26 @@
-type LoadingSkeletonProps = {
-  amountItems: number
+import { Skeleton } from "./ui/skeleton";
+
+export function LoadingSkeleton() {
+    return (
+        <>
+            {Array.from({length: 4,}).map((_, index) => (
+                <div key={index} className="flex flex-col p-3 w-full border-2 border-border rounded-md gap-1 relative overflow-hidden">
+                    <div className="inline-flex justify-between">
+                        <div className="flex flex-row items-center gap-1">
+                            <Skeleton className="w-16 h-16 rounded-sm mr-2.5" />
+                            <div className='flex flex-col gap-3.5'>
+                                <Skeleton className="h-6 w-48" />
+                                <div className='flex gap-2'>
+                                    <Skeleton className="w-7 h-7 rounded-md" />
+                                    <Skeleton className="w-7 h-7 rounded-md" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <Skeleton className='absolute w-2 top-0 right-0 bottom-0 m-2 rounded-[2px]' />
+                </div>
+            ))}
+        </>
+    )
 }
-
-const LoadingSkeleton = ({ amountItems }: LoadingSkeletonProps) => {
-  return (
-      <div className="w-full">
-          <ul className="grid grid-cols-1 gap-5 mt-4">
-              {Array.from({length: amountItems,}).map((_, index) => (
-                  <li key={index} className="p-4 w-full border-2 border-border rounded-md space-y-3">
-                      <div className="flex justify-between items-center space-x-2">
-                          <div className="animate-pulse h-10 bg-[#ccc] rounded-md w-full max-w-sm" />
-                          <div className="animate-pulse h-10 bg-[#ccc] rounded-md w-10" />
-                      </div>
-
-                      <div className="animate-pulse h-10 bg-[#ccc] rounded-md w-full max-w-xs" />
-
-                      <div className="border-b border-[#ccc] opacity-25"/>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-4 gap-4 mt-5">
-                          {Array.from({length: 7}).map((_, index) => (
-                              <div
-                                  key={index}
-                                  className="animate-pulse h-8 bg-[#ccc] rounded-full w-full"
-                              />
-                          ))}
-                      </div>
-
-                      <div className="border-b border-[#ccc] opacity-25"/>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-4 gap-4 mt-5">
-                          {Array.from({length: 7}).map((_, index) => (
-                              <div
-                                  key={index}
-                                  className="animate-pulse h-8 bg-[#ccc] rounded-full w-full"
-                              />
-                          ))}
-                      </div>
-                  </li>
-              ))}
-          </ul>
-      </div>
-  )
-}
-
-export { LoadingSkeleton }
