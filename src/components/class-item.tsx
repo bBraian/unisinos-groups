@@ -21,7 +21,7 @@ import {
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CircleCheckBig, CircleX, Pencil, Plus, Save, X } from 'lucide-react';
+import { CircleCheckBig, CircleX, History, Pencil, Plus, Save, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 
@@ -50,7 +50,10 @@ interface ClassItemProps {
 export function ClassItem({props} :ClassItemProps) {
   return (
     <Dialog>
-      <DialogTrigger className="flex flex-col p-3 w-full border-2 rounded-md gap-1 relative hover:bg-accent overflow-hidden">
+      <DialogTrigger className="relative flex flex-col p-3 w-full border-2 rounded-md gap-1 hover:bg-accent">
+        <div className="absolute top-0 left-0 bg-orange-400 text-white text-[11px] font-bold flex items-center justify-center rounded-full w-5 h-5 transform -translate-x-1/2 -translate-y-1/2">
+          <History className='text-lg' />
+        </div>
         <div className="inline-flex justify-between">
           <div className="flex flex-row items-center gap-1">
             <img src={props.image} className="w-16 h-16 rounded-sm mr-2.5" alt="" />
@@ -118,10 +121,10 @@ export function ClassItem({props} :ClassItemProps) {
                       id="name"
                       defaultValue="Grupo 1"
                     />
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" className='w-14' size="icon">
                       <Save className="h-4 w-4" />
                     </Button>
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" className='w-14' size="icon">
                       <X className="h-4 w-4" />
                     </Button>
                   </div>
@@ -132,8 +135,6 @@ export function ClassItem({props} :ClassItemProps) {
                       defaultValue="https://chat.whatsapp.com/E1QRZ48cQ1U62ThrllpmF4"
                     />
                   </div>
-                  
-                  
                 </div>
                 
               </div>
@@ -148,10 +149,6 @@ export function ClassItem({props} :ClassItemProps) {
           </Button>
           <Separator />
           <div className="flex w-full items-center gap-2">
-            {/* <Input
-              id="name"
-              defaultValue="Pedro Duarte"
-            /> */}
             <Button variant="outline" className='w-full'>
               Drive semestre 1
             </Button>
