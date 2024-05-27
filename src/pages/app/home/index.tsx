@@ -5,10 +5,22 @@ import { LoadingSkeleton } from '@/components/loading-skeleton'
 import { NoFoundSearch } from '@/components/not-found-search'
 import { ClassItem } from '@/components/class-item'
 import { grupos } from '../../../@fakeDB/groups.ts'
+import { api } from '@/api/axios.tsx'
 
 export function Home() {
   const [searchValue, setSearchValue] = useState('')
   const [loading, setLoading] = useState(false)
+  const [groups, setGroups] = useState([])
+  console.log(groups)
+
+    useEffect(() => {
+      getTrending()
+    }, [])
+
+    async function getTrending() {
+        const { data } = await api.get('groups')
+        setGroups(data)
+    }
 
   useEffect(() => {
     setLoading(false)

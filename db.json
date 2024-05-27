@@ -1,0 +1,18 @@
+{
+    "groups": [
+        { 
+            "id": "1", "course": "1", "title": "Desenvolvimento Web", "image": "https://i.imgur.com/sosgbXb.png", 
+            "whatsappLinks": [
+                { "id": "1", "title": "Link 1", "link": "https://chat.whatsapp.com/E1QRZ48cQ1U62ThrllpmF4" }
+            ], 
+            "driveLinks": [] 
+        },
+        { 
+            "id": "2", "course": "1", "title": "Programação FrontEnd", "image": "https://i.imgur.com/6QCpgi3.png", 
+            "whatsappLinks": [
+                { "id": "2", "title": "Link 1", "link": "https://chat.whatsapp.com/LNsCS8pf5TF3d56CR6nOBl" }
+            ], 
+            "driveLinks": [] 
+        }
+    ]
+}

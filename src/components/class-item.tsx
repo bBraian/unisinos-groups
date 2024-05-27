@@ -73,7 +73,6 @@ export function ClassItem({props: { image, title, whatsappLinks, driveLinks }} :
     setDriveClassLinks(driveWithIsEditing);
   }, []);
 
-  console.log(whatsappClassLinks)
 
   function handleNewClassLink(type: string) {
     if(hasIdZero()) {
