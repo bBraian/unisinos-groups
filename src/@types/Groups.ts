@@ -1,4 +1,4 @@
-import { AppLinksProps } from "./appLink";
+import { AppLinksProps } from "./AppLink.ts";
 
 export interface GroupsProps {
   id: number; 

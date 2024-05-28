@@ -5,7 +5,7 @@ import { LoadingSkeleton } from '@/components/loading-skeleton'
 import { NoFoundSearch } from '@/components/not-found-search'
 import { ClassItem } from '@/components/class-item'
 import { api } from '@/api/axios.tsx'
-import { GroupsProps } from '@/@types/groups.ts'
+import { GroupsProps } from '@/@types/Groups.ts'
 
 export function Home() {
   const [searchValue, setSearchValue] = useState('')

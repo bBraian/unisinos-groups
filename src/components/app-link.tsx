@@ -1,4 +1,4 @@
-import { AppLinksProps } from "@/@types/appLink";
+
 import {
   ContextMenu,
   ContextMenuContent,
@@ -10,6 +10,7 @@ import { CircleCheckBig, CircleX, Pencil, Plus, Save, X } from "lucide-react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { useEffect, useState } from "react";
+import { AppLinksProps } from "@/@types/AppLink.ts";
 
 interface LinkProps extends AppLinksProps {
   isEditting: boolean
