@@ -23,6 +23,8 @@ interface CustomAppLinkProps {
 
 export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
   const [appLink, setAppLink] = useState<LinkProps[]>([]);
+  const [nameInput, setNameInput] = useState("");
+  const [linkInput, setLinkInput] = useState("");
 
   useEffect(() => {
     const linkWithIsEditing = appClassLinks.map(link => ({
@@ -91,8 +93,9 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
                   <div className='flex w-full items-center gap-2'>
                     <Label htmlFor="name" className="text-right">Nome</Label>
                     <Input
-                      id="name"
-                      defaultValue="Grupo 1"
+                      placeholder="Nome"
+                      value={nameInput}
+                      onChange={(e) => setNameInput(e.target.value)}
                     />
                     <Button variant="outline" className='w-14' size="icon">
                       <Save className="h-4 w-4" />
@@ -104,8 +107,9 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
                   <div className='flex w-full items-center gap-2'>
                     <Label htmlFor="link" className="text-right">Link</Label>
                     <Input
-                      id="link"
-                      defaultValue="https://chat.whatsapp.com/E1QRZ48cQ1U62ThrllpmF4"
+                      placeholder="Link"
+                      value={linkInput}
+                      onChange={(e) => setLinkInput(e.target.value)}
                     />
                   </div>
                 </div>
