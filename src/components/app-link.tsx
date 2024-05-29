@@ -1,4 +1,4 @@
-import { AppLinksProps } from "@/@types/appLink";
+import { AppLinksProps } from "@/@types/AppLink";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -42,14 +42,22 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
     ]));
   }
 
-  function handleCancelNewClassLink() {
-    const updatedLinks = appLink.filter(link => link.id !== 0);
+  function handleCancelNewClassLink(id: number) {
+    let updatedLinks = appLink;
+    if(id === 0) {
+      updatedLinks = appLink.filter(link => link.id !== 0);
+    } else {
+      updatedLinks = appLink.map(link => 
+        link.id === id ? { ...link, isEditting: false } : link
+      );
+    }
     setAppLink(updatedLinks);
+    
   }
 
   function handleEditClassLink(id: number) {
     const updatedLinks = appLink.map(link => 
-      link.id === id ? { ...link, isEditing: true } : link
+      link.id === id ? { ...link, isEditting: true } : link
     );
     setAppLink(updatedLinks);
   }
@@ -96,7 +104,7 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
                     <Button variant="outline" className='w-14' size="icon">
                       <Save className="h-4 w-4" />
                     </Button>
-                    <Button variant="outline" className='w-14' size="icon" onClick={() => handleCancelNewClassLink()}>
+                    <Button variant="outline" className='w-14' size="icon" onClick={() => handleCancelNewClassLink(link.id)}>
                       <X className="h-4 w-4" />
                     </Button>
                   </div>
