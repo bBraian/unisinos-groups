@@ -1,4 +1,3 @@
-import { AppLinksProps } from "@/@types/AppLink";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -10,6 +9,9 @@ import { CircleCheckBig, CircleX, Pencil, Plus, Save, X } from "lucide-react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { useEffect, useState } from "react";
+import { AppLinksProps } from "@/@types/AppLink.ts";
+import { api } from "@/api/axios";
+import { toast } from "sonner";
 
 interface LinkProps extends AppLinksProps {
   isEditting: boolean
@@ -18,10 +20,14 @@ interface LinkProps extends AppLinksProps {
 interface CustomAppLinkProps {
   type: 'whatsapp' | 'drive';
   appClassLinks: AppLinksProps[];
+  classTitle: string;
+  classId: number;
 }
 
-export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
+export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLinkProps) {
   const [appLink, setAppLink] = useState<LinkProps[]>([]);
+  const [nameInput, setNameInput] = useState("");
+  const [linkInput, setLinkInput] = useState("");
 
   useEffect(() => {
     const linkWithIsEditing = appClassLinks.map(link => ({
@@ -40,6 +46,9 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
     setAppLink(prevState => ([
       ...prevState, newLink
     ]));
+
+    setNameInput(`${classTitle}  ${(appClassLinks.length + 1)}`);
+    setLinkInput('');
   }
 
   function handleCancelNewClassLink(id: number) {
@@ -52,7 +61,8 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
       );
     }
     setAppLink(updatedLinks);
-    
+    setNameInput('');
+    setLinkInput('');
   }
 
   function handleEditClassLink(id: number) {
@@ -60,6 +70,48 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
       link.id === id ? { ...link, isEditting: true } : link
     );
     setAppLink(updatedLinks);
+
+    const selectedLink = appLink.find(link => link.id === id);
+    if (selectedLink) {
+      setNameInput(selectedLink.title);
+      setLinkInput(selectedLink.link);
+    }
+  }
+
+  function handleInsertSaveClassLink(id: number) {
+    if(nameInput == '') {
+      toast.error('Preencha o nome do link')
+      return
+    }
+    if(linkInput == '') {
+      toast.error('Preencha o link')
+      return
+    }
+
+    if(id === 0) {
+      api.post(`groups/${classId}/link`, {
+        title: nameInput,
+        link: linkInput
+      })
+      .then((response) => {
+        console.log(response)
+      }).catch((e) => {
+        toast.error('Erro ao criar link')
+        console.log(e)
+      })
+    } else {
+      api.put(`groups/${classId}/link/${id}`, {
+        title: nameInput,
+        link: linkInput
+      })
+      .then((response) => {
+        console.log(response)
+      }).catch((e) => {
+        toast.error('Erro ao criar link')
+        console.log(e)
+      })
+
+    }
   }
 
   function hasIdZero() {
@@ -98,10 +150,11 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
                   <div className='flex w-full items-center gap-2'>
                     <Label htmlFor="name" className="text-right">Nome</Label>
                     <Input
-                      id="name"
-                      defaultValue="Grupo 1"
+                      placeholder="Nome"
+                      value={nameInput}
+                      onChange={(e) => setNameInput(e.target.value)}
                     />
-                    <Button variant="outline" className='w-14' size="icon">
+                    <Button variant="outline" className='w-14' size="icon" onClick={() => handleInsertSaveClassLink(link.id)}>
                       <Save className="h-4 w-4" />
                     </Button>
                     <Button variant="outline" className='w-14' size="icon" onClick={() => handleCancelNewClassLink(link.id)}>
@@ -111,8 +164,9 @@ export function AppLink({type, appClassLinks} :CustomAppLinkProps) {
                   <div className='flex w-full items-center gap-2'>
                     <Label htmlFor="link" className="text-right">Link</Label>
                     <Input
-                      id="link"
-                      defaultValue="https://chat.whatsapp.com/E1QRZ48cQ1U62ThrllpmF4"
+                      placeholder="Link"
+                      value={linkInput}
+                      onChange={(e) => setLinkInput(e.target.value)}
                     />
                   </div>
                 </div>

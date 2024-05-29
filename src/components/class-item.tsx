@@ -92,11 +92,11 @@ export function ClassItem({props: { image, title, whatsappLinks, driveLinks, id 
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
           
-          <AppLink type='whatsapp' appClassLinks={whatsappLinks} />
+          <AppLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
 
           <Separator />
 
-          <AppLink type='drive' appClassLinks={driveLinks} />
+          <AppLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
         <DialogFooter>
           <Button type="submit">Enviar para aprovação</Button>
         </DialogFooter>
