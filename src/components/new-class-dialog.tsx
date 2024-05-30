@@ -1,23 +1,17 @@
-import svgWhatsIcon from '../assets/whatsapp.svg'
-import svgDriveIcon from '../assets/drive.svg'
-
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
 
 import { Separator } from '@/components/ui/separator';
-import { AppLink } from './app-link';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { AppLinkNewClass } from './app-link-new-class';
 
 
@@ -25,7 +19,7 @@ interface AppLinkProps {
   id: number;
   title: string;
   link: string;
-  isEditing?: boolean;
+  isEditting?: boolean;
 }
 
 export function NewClassDialog() {
@@ -33,11 +27,7 @@ export function NewClassDialog() {
     const [course, setCourse] = useState('')
     const [whatsappLinks, setWhatsappLinks] = useState<AppLinkProps[]>([])
     const [driveLinks, setDriveLinks] = useState<AppLinkProps[]>([])
-    const [newClass, setNewClass] = useState({ 
-        "id": 0, "course": "0", "title": "", "image": "", 
-        "whatsappLinks": [], 
-        "driveLinks": [] 
-    })
+    
 
     return (
         <Dialog>
@@ -75,11 +65,11 @@ export function NewClassDialog() {
 
                 <Separator />
                 
-                <AppLinkNewClass type='whatsapp' appClassLinks={newClass.whatsappLinks} classTitle={newClass.title} />
+                <AppLinkNewClass type='whatsapp' appClassLinks={whatsappLinks} classTitle={name} setAppClassLinks={setWhatsappLinks} />
 
                 <Separator />
 
-                <AppLinkNewClass type='drive' appClassLinks={newClass.driveLinks} classTitle={newClass.title} />
+                <AppLinkNewClass type='drive' appClassLinks={driveLinks} classTitle={name} setAppClassLinks={setDriveLinks} />
                 
                 <DialogFooter>
                 <Button type="submit">Enviar para aprovação</Button>
