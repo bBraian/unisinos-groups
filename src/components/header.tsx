@@ -3,8 +3,8 @@ import appLogo from '../assets/uni.png'
 
 import { ToggleCourses } from './toggle-courses'
 import { ThemeToggle } from './theme/theme-toggle'
-import { Button } from './ui/button'
 import { Separator } from './ui/separator'
+import { NewClassDialog } from './new-class-dialog'
 
 export function Header() {
   return (
@@ -15,10 +15,7 @@ export function Header() {
         <Separator orientation="vertical" className="h-6" />
 
         <nav className="flex items-center space-x-4 lg:space-x-6">
-          <Button variant="outline">
-            <Plus className="mr-2 h-4 w-4"  />
-            Novo grupo
-          </Button>
+          <NewClassDialog />
 
         </nav>
 

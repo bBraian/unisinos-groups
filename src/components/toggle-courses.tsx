@@ -1,36 +1,18 @@
-import { Building, ChevronDown } from 'lucide-react'
-
-import { Button } from './ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select'
 
 export function ToggleCourses() {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          className="flex select-none items-center gap-2"
-        >
-          Curso
-          <ChevronDown className="h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-
-      <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuItem>
-          <Building className="mr-2 h-4 w-4" />
-          <span>Análise e Desenvolvimento de Sistemas</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Building className="mr-2 h-4 w-4" />
-          <span>Ciência da Computação</span>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Select>
+      <SelectTrigger className="w-[120px]">
+        <SelectValue placeholder="Curso" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Cursos</SelectLabel>
+          <SelectItem value="ads">Análise e Desenvolvimento de Sistemas</SelectItem>
+          <SelectItem value="cc">Ciência da Computação</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   )
 }

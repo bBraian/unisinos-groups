@@ -80,7 +80,7 @@ export function ClassItem({props: { image, title, whatsappLinks, driveLinks, id 
             
           </div>
         </div>
-        <div className='absolute w-2 bg-green-500 top-0 right-0 bottom-0 m-2 rounded-[2px]'></div>
+        {/* <div className='absolute w-2 bg-green-500 top-0 right-0 bottom-0 m-2 rounded-[2px]'></div> */}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className='flex flex-row items-center'>
@@ -92,14 +92,12 @@ export function ClassItem({props: { image, title, whatsappLinks, driveLinks, id 
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
           
-          <AppLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
+        <AppLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
 
-          <Separator />
+        <Separator />
 
-          <AppLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
-        <DialogFooter>
-          <Button type="submit">Enviar para aprovação</Button>
-        </DialogFooter>
+        <AppLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
+
       </DialogContent>
     </Dialog>
   );

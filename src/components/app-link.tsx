@@ -120,62 +120,65 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
 
   return (
     <>
-      <div className="flex w-full items-center gap-2">
-        <div className='flex flex-col w-full gap-2'>
-          {appLink.map((link) => {
-            if(!link.isEditting) {
+      {appLink.length > 0 && (
+        <div className="flex w-full items-center gap-2">
+          <div className='flex flex-col w-full gap-2'>
+            {appLink.map((link) => {
+              if(!link.isEditting) {
+                return (
+                  <div className='flex w-full gap-2' key={link.id}>
+                    <ContextMenu>
+                      <ContextMenuTrigger className='w-full'>
+                        <Button variant="outline" className='w-full h-10'>
+                          <div className='w-3 h-3 rounded-full bg-green-500 mr-2'></div>
+                          {link.title}
+                        </Button>
+                      </ContextMenuTrigger>
+                      <ContextMenuContent>
+                        <ContextMenuItem className='gap-2 text-green-500'><CircleCheckBig className='w-5 h-5' /> Funcionando</ContextMenuItem>
+                        <ContextMenuItem className='gap-2 text-red-500'><CircleX /> Não funcionando</ContextMenuItem>
+                      </ContextMenuContent>
+                    </ContextMenu>
+                    <Button variant="outline" size="icon" className='h-10 w-10' onClick={() => handleEditClassLink(link.id)}>
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )
+              }
               return (
                 <div className='flex w-full gap-2' key={link.id}>
-                  <ContextMenu>
-                    <ContextMenuTrigger className='w-full'>
-                      <Button variant="outline" className='w-full h-10'>
-                        <div className='w-3 h-3 rounded-full bg-green-500 mr-2'></div>
-                        {link.title}
+                  <div className="flex flex-col p-3 w-full border-2 rounded-md overflow-hidden items-end gap-2">
+                    <div className='flex w-full items-center gap-2'>
+                      <Label htmlFor="name" className="text-right">Nome</Label>
+                      <Input
+                        placeholder="Nome"
+                        value={nameInput}
+                        onChange={(e) => setNameInput(e.target.value)}
+                      />
+                      <Button variant="outline" className='w-14' size="icon" onClick={() => handleInsertSaveClassLink(link.id)}>
+                        <Save className="h-4 w-4" />
                       </Button>
-                    </ContextMenuTrigger>
-                    <ContextMenuContent>
-                      <ContextMenuItem className='gap-2 text-green-500'><CircleCheckBig className='w-5 h-5' /> Funcionando</ContextMenuItem>
-                      <ContextMenuItem className='gap-2 text-red-500'><CircleX /> Não funcionando</ContextMenuItem>
-                    </ContextMenuContent>
-                  </ContextMenu>
-                  <Button variant="outline" size="icon" className='h-10 w-10' onClick={() => handleEditClassLink(link.id)}>
-                    <Pencil className="h-4 w-4" />
-                  </Button>
+                      <Button variant="outline" className='w-14' size="icon" onClick={() => handleCancelNewClassLink(link.id)}>
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    <div className='flex w-full items-center gap-2'>
+                      <Label htmlFor="link" className="text-right">Link</Label>
+                      <Input
+                        placeholder="Link"
+                        value={linkInput}
+                        onChange={(e) => setLinkInput(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  
                 </div>
               )
-            }
-            return (
-              <div className='flex w-full gap-2' key={link.id}>
-                <div className="flex flex-col p-3 w-full border-2 rounded-md overflow-hidden items-end gap-2">
-                  <div className='flex w-full items-center gap-2'>
-                    <Label htmlFor="name" className="text-right">Nome</Label>
-                    <Input
-                      placeholder="Nome"
-                      value={nameInput}
-                      onChange={(e) => setNameInput(e.target.value)}
-                    />
-                    <Button variant="outline" className='w-14' size="icon" onClick={() => handleInsertSaveClassLink(link.id)}>
-                      <Save className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" className='w-14' size="icon" onClick={() => handleCancelNewClassLink(link.id)}>
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div>
-                  <div className='flex w-full items-center gap-2'>
-                    <Label htmlFor="link" className="text-right">Link</Label>
-                    <Input
-                      placeholder="Link"
-                      value={linkInput}
-                      onChange={(e) => setLinkInput(e.target.value)}
-                    />
-                  </div>
-                </div>
-                
-              </div>
-            )
-          })}
+            })}
+          </div>
         </div>
-      </div>
+      )}
+      
       <Button size='sm' className='flex w-min' variant='secondary' onClick={() => handleNewClassLink()}>
         {type == 'whatsapp' ? (
           <>
