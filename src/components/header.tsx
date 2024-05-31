@@ -1,4 +1,3 @@
-import { Plus } from 'lucide-react'
 import appLogo from '../assets/uni.png'
 
 import { ToggleCourses } from './toggle-courses'

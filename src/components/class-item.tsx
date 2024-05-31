@@ -2,11 +2,9 @@ import svgWhatsIcon from '../assets/whatsapp.svg'
 import svgDriveIcon from '../assets/drive.svg'
 import { Badge } from './badge';
 
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
