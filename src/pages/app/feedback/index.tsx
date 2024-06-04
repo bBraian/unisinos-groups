@@ -40,7 +40,7 @@ export function Feedback() {
   return(
     <>
       <Helmet title="Feedback"/>
-        <div className="flex flex-col px-5 flex-1 items-center justify-center min-h-screen">
+        <div className="flex flex-col flex-1 items-center justify-center min-h-screen">
           <div className=" flex flex-col p-5 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">
                 Feedback
@@ -49,7 +49,7 @@ export function Feedback() {
                 Deixe um feedback e nos ajude a melhorar!
               </p>
           </div>
-          <form className="space-y-4 w-96" onSubmit={handleSubmit(handleFeedback)}>
+          <form className="space-y-4 w-96 px-5" onSubmit={handleSubmit(handleFeedback)}>
             <div className="space-y-2">
               <Label htmlFor="user_name">Nome</Label>
               <Input id="user_name" type="user_name" {...register('user_name')} />
