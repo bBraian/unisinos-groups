@@ -13,6 +13,7 @@ import {
 import { History } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { AppLink } from './app-link';
+import { getInitials } from '@/utils/get-initials';
 
 
 const whatsIconProps = {
@@ -60,7 +61,9 @@ export function ClassItem({props: { image, title, whatsappLinks, driveLinks, id 
             {image ? (
               <img src={image} className="w-16 h-16 rounded-sm mr-2.5" alt="" />
             ) : (
-              <div className="w-16 h-16 rounded-sm mr-2.5 bg-muted"></div>
+              <div className="w-16 h-16 rounded-sm mr-2.5 bg-muted flex justify-center items-center font-bold text-lg tracking-wider">
+                {getInitials(title)}
+              </div>
             )}
             <div className='flex flex-col gap-3.5'>
               <h2 className="font-semibold text-lg h-full hover:cursor-pointer hover:text-slate-500 leading-4">

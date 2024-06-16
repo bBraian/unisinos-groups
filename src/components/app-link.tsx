@@ -13,6 +13,9 @@ import { AppLinksProps } from "@/@types/AppLink.ts";
 import { api } from "@/api/axios";
 import { toast } from "sonner";
 
+import svgWhatsIcon from '../assets/whatsapp.svg'
+import svgDriveIcon from '../assets/drive.svg'
+
 interface LinkProps extends AppLinksProps {
   isEditting: boolean
 }
@@ -28,6 +31,7 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
   const [appLink, setAppLink] = useState<LinkProps[]>([]);
   const [nameInput, setNameInput] = useState("");
   const [linkInput, setLinkInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const linkWithIsEditing = appClassLinks.map(link => ({
@@ -88,30 +92,47 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
       return
     }
 
+    const toastId = toast.loading('Enviando link para aprovação')
+    setIsLoading(true)
     if(id === 0) {
-      api.post(`groups/${classId}/link`, {
+      api.post(`link/pr`, {
+        subjectId: classId,
         title: nameInput,
-        link: linkInput
+        link: linkInput,
+        type
       })
       .then((response) => {
         console.log(response)
+        toast.success('Link enviado para aprovação')
+        setIsLoading(false)
+        handleCancelNewClassLink(id)
       }).catch((e) => {
         toast.error('Erro ao criar link')
         console.log(e)
+        setIsLoading(false)
       })
     } else {
-      api.put(`groups/${classId}/link/${id}`, {
+      api.put(`link/pr/${id}`, {
+        subjectId: classId,
         title: nameInput,
-        link: linkInput
+        link: linkInput,
+        type
       })
       .then((response) => {
         console.log(response)
+        toast.success('Link enviado para aprovação')
+        setIsLoading(false)
+        handleCancelNewClassLink(id)
+        
       }).catch((e) => {
         toast.error('Erro ao criar link')
+        setIsLoading(false)
         console.log(e)
       })
 
     }
+
+    toast.dismiss(toastId)
   }
 
   function hasIdZero() {
@@ -129,17 +150,21 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
                   <div className='flex w-full gap-2' key={link.id}>
                     <ContextMenu>
                       <ContextMenuTrigger className='w-full'>
-                        <Button variant="outline" className='w-full h-10'>
-                          <div className='w-3 h-3 rounded-full bg-green-500 mr-2'></div>
-                          {link.title}
-                        </Button>
+                        <a href={link.link} target="_blank">
+                          <Button variant="outline" className='w-full h-10'>
+                              <div className={`relative w-5 h-5 rounded-md flex justify-center items-center mr-2 ${type == 'whatsapp' ? 'bg-green-400' : 'bg-blue-400'}`}>
+                                <img src={type == 'whatsapp' ? svgWhatsIcon : svgDriveIcon} className="w-3.5 h-3.5" alt="" />
+                              </div>
+                              {link.title}
+                          </Button>
+                        </a>
                       </ContextMenuTrigger>
                       <ContextMenuContent>
                         <ContextMenuItem className='gap-2 text-green-500'><CircleCheckBig className='w-5 h-5' /> Funcionando</ContextMenuItem>
                         <ContextMenuItem className='gap-2 text-red-500'><CircleX /> Não funcionando</ContextMenuItem>
                       </ContextMenuContent>
                     </ContextMenu>
-                    <Button variant="outline" size="icon" className='h-10 w-10' onClick={() => handleEditClassLink(link.id)}>
+                    <Button disabled={isLoading} variant="outline" size="icon" className='h-10 w-10' onClick={() => handleEditClassLink(link.id)}>
                       <Pencil className="h-4 w-4" />
                     </Button>
                   </div>
@@ -155,10 +180,10 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
                         value={nameInput}
                         onChange={(e) => setNameInput(e.target.value)}
                       />
-                      <Button variant="outline" className='w-14' size="icon" onClick={() => handleInsertSaveClassLink(link.id)}>
+                      <Button disabled={isLoading} variant="outline" className='w-14' size="icon" onClick={() => handleInsertSaveClassLink(link.id)}>
                         <Save className="h-4 w-4" />
                       </Button>
-                      <Button variant="outline" className='w-14' size="icon" onClick={() => handleCancelNewClassLink(link.id)}>
+                      <Button disabled={isLoading} variant="outline" className='w-14' size="icon" onClick={() => handleCancelNewClassLink(link.id)}>
                         <X className="h-4 w-4" />
                       </Button>
                     </div>
@@ -179,7 +204,7 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
         </div>
       )}
       
-      <Button size='sm' className='flex w-min' variant='secondary' onClick={() => handleNewClassLink()}>
+      <Button disabled={isLoading} size='sm' className='flex w-min' variant='secondary' onClick={() => handleNewClassLink()}>
         {type == 'whatsapp' ? (
           <>
             <Plus className="mr-2 h-4 w-4" /> Link Whats

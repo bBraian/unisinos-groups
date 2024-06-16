@@ -11,16 +11,26 @@ export function Home() {
   const [searchValue, setSearchValue] = useState('')
   const [loading, setLoading] = useState(true)
   const [groups, setGroups] = useState<GroupsProps[]>([])
+  const [filteredGroups, setFilteredGroups] = useState<GroupsProps[]>([])
   console.log(groups)
 
   useEffect(() => {
-    getTrending()
+    getGroups()
   }, [])
 
-  async function getTrending() {
+  useEffect(() => {
+    if(searchValue.length > 0) {
+        setFilteredGroups(groups.filter(group => group.title.toLowerCase().includes(searchValue.toLowerCase())));
+    } else {
+      setFilteredGroups(groups)
+    }
+}, [searchValue])
+
+  async function getGroups() {
     setTimeout(async () => {
-      const { data } = await api.get('groups')
-      setGroups(data)
+      const { data } = await api.get('subject')
+      setGroups(data.subjects)
+      setFilteredGroups(data.subjects)
       setLoading(false)
     }, 1000);
      
@@ -45,7 +55,7 @@ export function Home() {
             <NoFoundSearch />
           ) : (
             <Fragment>
-              {groups.map((group) => (
+              {filteredGroups.map((group) => (
                 <ClassItem key={group.id} props={group} />
               ))}
               {/* <p className="text-muted-foreground font-semibold">
