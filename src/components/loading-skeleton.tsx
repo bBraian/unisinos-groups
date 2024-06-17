@@ -18,7 +18,6 @@ export function LoadingSkeleton() {
                             
                         </div>
                     </div>
-                    <Skeleton className='absolute w-2 top-0 right-0 bottom-0 m-2 rounded-[2px]' />
                 </div>
             ))}
         </>

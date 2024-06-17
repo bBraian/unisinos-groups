@@ -8,6 +8,7 @@ import { toast } from "sonner";
 
 interface LinkProps extends AppLinksProps {
   isEditting?: boolean;
+  type: 'whatsapp' | 'drive';
 }
 
 interface CustomAppLinkProps {
@@ -25,7 +26,7 @@ export function AppLinkNewClass({type, appClassLinks, classTitle, setAppClassLin
     if(hasIdZero()) {
       return
     }
-    const newLink = { id: 0, title: '', link: '', isEditting: true };
+    const newLink = { id: 0, title: '', link: '', isEditting: true, type: type };
     setAppClassLinks(prevState => ([
       ...prevState, newLink
     ]));
@@ -73,10 +74,10 @@ export function AppLinkNewClass({type, appClassLinks, classTitle, setAppClassLin
 
     if(id == 0) {
       let updatedLinks = appClassLinks.filter(link => link.id !== 0);
-      setAppClassLinks([...updatedLinks, { id: (appClassLinks.length + 1), link: linkInput, title: nameInput, isEditting: false}])
+      setAppClassLinks([...updatedLinks, { id: (appClassLinks.length + 1), type: type, link: linkInput, title: nameInput, isEditting: false }])
     } else {
       let updatedLinks = appClassLinks.map(link => 
-        link.id === id ? { ...link, isEditting: false, title: nameInput, link: linkInput } : link
+        link.id === id ? { ...link, isEditting: false, title: nameInput, link: linkInput, type: type } : link
       );
       setAppClassLinks(updatedLinks)
     }

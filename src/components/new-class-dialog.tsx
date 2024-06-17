@@ -13,6 +13,8 @@ import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { AppLinkNewClass } from './app-link-new-class';
+import { toast } from "sonner";
+import { api } from "@/api/axios";
 
 
 interface AppLinkProps {
@@ -20,6 +22,7 @@ interface AppLinkProps {
   title: string;
   link: string;
   isEditting?: boolean;
+  type: 'whatsapp' | 'drive';
 }
 
 export function NewClassDialog() {
@@ -27,7 +30,59 @@ export function NewClassDialog() {
     const [course, setCourse] = useState('')
     const [whatsappLinks, setWhatsappLinks] = useState<AppLinkProps[]>([])
     const [driveLinks, setDriveLinks] = useState<AppLinkProps[]>([])
+    const [isLoading, setIsLoading] = useState(false)
+
+    function reset() {
+        setName('')
+        setCourse('')
+        setWhatsappLinks([])
+        setDriveLinks([])
+    }
     
+    function handleSendNewClassToApproval() {
+        if(name == '') {
+            toast.error('Preencha o nome do curso')
+            return
+        }
+        if(course == '') {
+            toast.error('Preencha o curso')
+            return
+        }
+
+        const data = {
+            course: parseInt(course),
+            title: name,
+            whatsappLinks: whatsappLinks,
+            driveLinks: driveLinks
+        }
+
+        console.log(data)
+    
+        const toastId = toast.loading('Enviando disciplina para aprovação')
+        setIsLoading(true)
+        api.post(`subject/pr`, { 
+            course: parseInt(course),
+            title: name,
+            whatsappLinks: whatsappLinks,
+            driveLinks: driveLinks
+         })
+        .then((response) => {
+            console.log(response)
+            toast.success('Disciplina enviada para aprovação')
+            setIsLoading(false)
+            reset()
+            toast.dismiss(toastId)
+        }).catch((e) => {
+            if(e.response?.data?.message) {
+                toast.error(e.response.data.message);
+            } else {
+                toast.error('Erro ao criar disciplina');
+            }
+            console.log(e)
+            setIsLoading(false)
+            toast.dismiss(toastId)
+        })
+    }
 
     return (
         <Dialog>
@@ -56,8 +111,8 @@ export function NewClassDialog() {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
-                                <SelectItem value="ads">Análise e Desenvolvimento de Sistemas</SelectItem>
-                                <SelectItem value="cc">Ciência da Computação</SelectItem>
+                                <SelectItem value="1">Análise e Desenvolvimento de Sistemas</SelectItem>
+                                <SelectItem value="2">Ciência da Computação</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
@@ -72,7 +127,7 @@ export function NewClassDialog() {
                 <AppLinkNewClass type='drive' appClassLinks={driveLinks} classTitle={name} setAppClassLinks={setDriveLinks} />
                 
                 <DialogFooter>
-                <Button type="submit">Enviar para aprovação</Button>
+                <Button type="button" onClick={handleSendNewClassToApproval} disabled={isLoading}>Enviar para aprovação</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
