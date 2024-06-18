@@ -94,45 +94,29 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
 
     const toastId = toast.loading('Enviando link para aprovação')
     setIsLoading(true)
-    if(id === 0) {
-      api.post(`link/pr`, {
-        subjectId: classId,
-        title: nameInput,
-        link: linkInput,
-        type
-      })
-      .then((response) => {
-        console.log(response)
-        toast.success('Link enviado para aprovação')
-        setIsLoading(false)
-        handleCancelNewClassLink(id)
-      }).catch((e) => {
-        toast.error('Erro ao criar link')
-        console.log(e)
-        setIsLoading(false)
-      })
-    } else {
-      api.put(`link/pr/${id}`, {
-        subjectId: classId,
-        title: nameInput,
-        link: linkInput,
-        type
-      })
-      .then((response) => {
-        console.log(response)
-        toast.success('Link enviado para aprovação')
-        setIsLoading(false)
-        handleCancelNewClassLink(id)
-        
-      }).catch((e) => {
-        toast.error('Erro ao criar link')
-        setIsLoading(false)
-        console.log(e)
-      })
-
-    }
-
-    toast.dismiss(toastId)
+    api.post(`link/pr`, {
+      subjectId: classId,
+      linkId: id > 0 ? id : null,
+      title: nameInput,
+      link: linkInput,
+      type
+    })
+    .then((response) => {
+      console.log(response)
+      toast.success('Link enviado para aprovação')
+      setIsLoading(false)
+      handleCancelNewClassLink(id)
+      toast.dismiss(toastId)
+    }).catch((e) => {
+      if(e.response?.data?.message) {
+        toast.error(e.response.data.message);
+      } else {
+          toast.error('Erro ao enviar link para aprovação');
+      }
+      setIsLoading(false)
+      console.log(e)
+      toast.dismiss(toastId)
+    })
   }
 
   function hasIdZero() {
