@@ -21,7 +21,7 @@ interface CustomAppLinkProps {
   setAppClassLinks: React.Dispatch<React.SetStateAction<LinkProps[]>>;
 }
 
-export function AppLinkNewClass({type, appClassLinks, classTitle, setAppClassLinks} :CustomAppLinkProps) {
+export function AppLinkNewClass({type, appClassLinks, setAppClassLinks} :CustomAppLinkProps) {
   const [nameInput, setNameInput] = useState("");
   const [linkInput, setLinkInput] = useState("");
 

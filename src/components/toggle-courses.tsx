@@ -4,7 +4,7 @@ import { AppContext } from '@/context/AppContext'
 import { api } from '@/api/axios'
 
 export function ToggleCourses() {
-  const { course, setCourse, activeCourse, setActiveCourse } = useContext(AppContext)
+  const { course, setCourse } = useContext(AppContext)
 
   useEffect(() => {
     getCourses()
