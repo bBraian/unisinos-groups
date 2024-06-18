@@ -6,6 +6,9 @@ import { useState } from "react";
 import { AppLinksProps } from "@/@types/AppLink.ts";
 import { toast } from "sonner";
 
+import svgWhatsIcon from '../assets/whatsapp.svg'
+import svgDriveIcon from '../assets/drive.svg'
+
 interface LinkProps extends AppLinksProps {
   isEditting?: boolean;
   type: 'whatsapp' | 'drive';
@@ -31,7 +34,7 @@ export function AppLinkNewClass({type, appClassLinks, classTitle, setAppClassLin
       ...prevState, newLink
     ]));
 
-    setNameInput(`${classTitle}  ${(appClassLinks.length + 1)}`);
+    setNameInput(`Link ${(appClassLinks.length + 1)}`);
     setLinkInput('');
   }
 
@@ -97,7 +100,9 @@ export function AppLinkNewClass({type, appClassLinks, classTitle, setAppClassLin
                 return (
                   <div className='flex w-full gap-2' key={link.id}>
                     <Button variant="outline" className='w-full h-10'>
-                      <div className='w-3 h-3 rounded-full bg-green-500 mr-2'></div>
+                      <div className={`relative w-5 h-5 rounded-md flex justify-center items-center mr-2 ${type == 'whatsapp' ? 'bg-green-400' : 'bg-blue-400'}`}>
+                        <img src={type == 'whatsapp' ? svgWhatsIcon : svgDriveIcon} className="w-3.5 h-3.5" alt="" />
+                      </div>
                       {link.title}
                     </Button>
                     <Button variant="outline" size="icon" className='h-10 w-10' onClick={() => handleEditClassLink(link.id)}>

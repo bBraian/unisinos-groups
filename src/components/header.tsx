@@ -15,7 +15,6 @@ export function Header() {
 
         <nav className="flex items-center space-x-4 lg:space-x-6">
           <NewClassDialog />
-
         </nav>
 
         <div className="ml-auto flex items-center gap-2">

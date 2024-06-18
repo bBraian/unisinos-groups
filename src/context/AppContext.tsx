@@ -4,8 +4,6 @@ const AppContext = createContext({} as any)
 
 const AppProvider = ({ children }: { children?: React.ReactNode }) => {
   const [course, setCourse] = useState([])
-  console.log(course)
-  const [activeCourse, setActiveCourse] = useState({})
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     async function initApp() {
@@ -17,9 +15,7 @@ const AppProvider = ({ children }: { children?: React.ReactNode }) => {
   const values = {
     course,
     setCourse,
-    loading,
-    activeCourse,
-    setActiveCourse
+    loading
   }
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>

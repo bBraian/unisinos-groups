@@ -31,12 +31,14 @@ export function NewClassDialog() {
     const [whatsappLinks, setWhatsappLinks] = useState<AppLinkProps[]>([])
     const [driveLinks, setDriveLinks] = useState<AppLinkProps[]>([])
     const [isLoading, setIsLoading] = useState(false)
+    const [open, setOpen] = useState(false);
 
     function reset() {
         setName('')
         setCourse('')
         setWhatsappLinks([])
         setDriveLinks([])
+        setOpen(false)
     }
     
     function handleSendNewClassToApproval() {
@@ -49,22 +51,15 @@ export function NewClassDialog() {
             return
         }
 
-        const data = {
-            course: parseInt(course),
-            title: name,
-            whatsappLinks: whatsappLinks,
-            driveLinks: driveLinks
-        }
-
-        console.log(data)
+        const removeIsEditing = (links: AppLinkProps[]) => links.map(({ isEditting, id, ...rest }) => rest);
     
         const toastId = toast.loading('Enviando disciplina para aprovação')
         setIsLoading(true)
         api.post(`subject/pr`, { 
             course: parseInt(course),
             title: name,
-            whatsappLinks: whatsappLinks,
-            driveLinks: driveLinks
+            whatsappLinks: removeIsEditing(whatsappLinks),
+            driveLinks: removeIsEditing(driveLinks)
          })
         .then((response) => {
             console.log(response)
@@ -85,7 +80,7 @@ export function NewClassDialog() {
     }
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button variant="outline">
                     <Plus className="mr-2 h-4 w-4"  />
