@@ -18,7 +18,7 @@ export function AccountMenu() {
           variant="outline"
           className="flex select-none items-center gap-2"
         >
-          Monitorator
+          Unisinos Groups
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
@@ -32,11 +32,7 @@ export function AccountMenu() {
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
-
-        <DropdownMenuItem>
-          <Building className="mr-2 h-4 w-4" />
-          <span>Monitorar novo serviço</span>
-        </DropdownMenuItem>
+        
         <DropdownMenuItem className="text-rose-500 dark:text-rose-400">
           <LogOut className="mr-2 h-4 w-4" />
           <span>Sair</span>

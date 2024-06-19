@@ -30,6 +30,8 @@ export function ToggleCourses() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Cursos</SelectLabel>
+          <SelectItem value="1">Análise e Desenvolvimento de Sistemas</SelectItem>
+          <SelectItem value="2">Ciência da Computação</SelectItem>
           {course.map((item: any) => {
             <SelectItem value={item.id}>{item.name}</SelectItem>
           })}

@@ -5,8 +5,9 @@ import { AuthLayout } from './pages/layouts/auth'
 import { SignIn } from './pages/auth/sign-in'
 import { Home } from './pages/app/home'
 import { AdminLayout } from './pages/layouts/admin'
-import { Admin } from './pages/app/admin'
 import { Feedback } from './pages/app/feedback'
+import { Admin } from './pages/app/admin/dashboard'
+import { PullRequests } from './pages/app/admin/pull-requests'
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { path: '', element: <Admin /> },
+      { path: 'pr', element: <PullRequests /> },
     ],
   },
   {
