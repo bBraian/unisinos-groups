@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-import { History } from 'lucide-react';
+import { CircleCheckBig, CircleX, History } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { getInitials } from '@/utils/get-initials';
 import { Badge } from '@/components/badge';
@@ -92,15 +92,18 @@ export function PrItem({props: { image, title, whatsappLinks, driveLinks, id }} 
         </DialogHeader>
           
         <div className='flex items-center gap-5'>
-          <div className="max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md overflow-hidden items-end gap-4 bg-zinc-900">
+          <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md gap-4 bg-zinc-900 items-end">
+            <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-muted-foreground'>Atual</span>
             <PrLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
 
             <Separator />
 
             <PrLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
+            
           </div>
           <Separator orientation='vertical' />
-          <div className="max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md overflow-hidden items-end gap-4">
+          <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md items-end gap-4">
+            <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-green-400'>Nova</span>
             <PrLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
 
             <Separator />
@@ -108,8 +111,11 @@ export function PrItem({props: { image, title, whatsappLinks, driveLinks, id }} 
             <PrLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
           </div>
         </div>
+        <div className='flex flex-row gap-2.5 w-full justify-end'>
+          <Button variant='outline' className='gap-2 text-red-500'><CircleX className='w-5 h-5' /> Rejeitar</Button>
+          <Button variant='outline' className='gap-2 text-green-500'><CircleCheckBig className='w-5 h-5' /> Aprovar</Button>
+        </div>
 
-        <Button>Aprovar</Button>
 
       </DialogContent>
     </Dialog>

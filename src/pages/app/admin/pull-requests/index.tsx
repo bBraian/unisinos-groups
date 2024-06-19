@@ -17,8 +17,125 @@ export function PullRequests() {
 
   async function getGroups() {
     setTimeout(async () => {
-      const { data } = await api.get('subject')
-      setGroups(data.subjects)
+      // const { data } = await api.get('subject')
+      const data: any  = [
+        {
+            "id": 2,
+            "title": "Desenvolvimento Web",
+            "image": "https://i.imgur.com/sosgbXb.png",
+            "courseId": 1,
+            "createdAt": "2024-06-12T01:08:55.821Z",
+            "updatedAt": "2024-06-12T01:08:55.821Z",
+            "links": false,
+            "whatsappLinks": [
+                {
+                    "id": 1,
+                    "title": "Link 1",
+                    "link": "https://chat.whatsapp.com/E1QRZ48cQ1U62ThrllpmF4",
+                    "type": "whatsapp",
+                    "subjectId": 2,
+                    "createdAt": "2024-06-12T01:08:55.842Z",
+                    "updatedAt": "2024-06-12T01:08:55.842Z"
+                }
+            ],
+            "driveLinks": []
+        },
+        {
+            "id": 3,
+            "title": "Programação FrontEnd",
+            "image": "https://i.imgur.com/6QCpgi3.png",
+            "courseId": 1,
+            "createdAt": "2024-06-16T18:52:01.531Z",
+            "updatedAt": "2024-06-16T18:52:01.531Z",
+            "links": false,
+            "whatsappLinks": [
+                {
+                    "id": 7,
+                    "title": "Link 1",
+                    "link": "https://chat.whatsapp.com/LNsCS8pf5TF3d56CR6nOBl",
+                    "type": "whatsapp",
+                    "subjectId": 3,
+                    "createdAt": "2024-06-16T18:52:01.598Z",
+                    "updatedAt": "2024-06-16T18:52:01.598Z"
+                }
+            ],
+            "driveLinks": []
+        },
+        {
+            "id": 4,
+            "title": "Arquitetura de Software",
+            "image": "https://i.imgur.com/xGuwLwv.png",
+            "courseId": 1,
+            "createdAt": "2024-06-16T18:53:44.922Z",
+            "updatedAt": "2024-06-16T18:53:44.922Z",
+            "links": false,
+            "whatsappLinks": [
+                {
+                    "id": 8,
+                    "title": "Link 1",
+                    "link": "https://chat.whatsapp.com/HvVqtjvVcYy14EvwbZs9ns",
+                    "type": "whatsapp",
+                    "subjectId": 4,
+                    "createdAt": "2024-06-16T18:53:44.931Z",
+                    "updatedAt": "2024-06-16T18:53:44.931Z"
+                }
+            ],
+            "driveLinks": [
+                {
+                    "id": 47,
+                    "title": "Link 1",
+                    "link": "https://docs.google.com/document/d/1bqy7ftMzVQlOa8frGKM3clFCC3pKUF5Ygv8EIVZ9XkE/edit",
+                    "type": "drive",
+                    "subjectId": 4,
+                    "createdAt": "2024-06-12T01:08:55.842Z",
+                    "updatedAt": "2024-06-12T01:08:55.842Z"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Segurança da Informação",
+            "image": "https://i.imgur.com/WGYShLx.png",
+            "courseId": 1,
+            "createdAt": "2024-06-16T19:12:42.459Z",
+            "updatedAt": "2024-06-16T19:12:42.459Z",
+            "links": false,
+            "whatsappLinks": [
+                {
+                    "id": 9,
+                    "title": "Link 1",
+                    "link": "https://chat.whatsapp.com/LTaeveve7JsAqNHJrkGrGq",
+                    "type": "whatsapp",
+                    "subjectId": 5,
+                    "createdAt": "2024-06-16T19:12:43.020Z",
+                    "updatedAt": "2024-06-16T19:12:43.020Z"
+                }
+            ],
+            "driveLinks": []
+        },
+        {
+            "id": 6,
+            "title": "Design de IHC",
+            "image": "https://i.imgur.com/xVCaiK9.png",
+            "courseId": 1,
+            "createdAt": "2024-06-16T19:13:35.260Z",
+            "updatedAt": "2024-06-16T19:13:35.260Z",
+            "links": false,
+            "whatsappLinks": [
+                {
+                    "id": 10,
+                    "title": "Link 1",
+                    "link": "https://chat.whatsapp.com/KYAWmDkKkRFC08fRgbJodP",
+                    "type": "whatsapp",
+                    "subjectId": 6,
+                    "createdAt": "2024-06-16T19:13:35.268Z",
+                    "updatedAt": "2024-06-16T19:13:35.268Z"
+                }
+            ],
+            "driveLinks": []
+        }
+    ]
+      setGroups(data)
       setLoading(false)
     }, 1000);
      
