@@ -15,6 +15,7 @@ import { getInitials } from '@/utils/get-initials';
 import { Badge } from '@/components/badge';
 import { PrLink } from './pr-link';
 import { Button } from '@/components/ui/button';
+import { api } from '@/api/axios';
 
 const whatsIconProps = {
     badgeStyle: 'bg-green-400',
@@ -41,12 +42,32 @@ interface ClassItemProps {
     course: number;
     title: string;
     image: string;
+    action: string;
     whatsappLinks: AppLinkProps[];
     driveLinks: AppLinkProps[];
   }
 }
 
-export function PrItem({props: { image, title, whatsappLinks, driveLinks, id }} :ClassItemProps) {
+export function PrItem({props: { image, title, whatsappLinks, driveLinks, id, action }} :ClassItemProps) {
+  async function approvePr() {
+    api.put(`pull-request/approve/${id}`)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+  async function rejectPr() {
+    api.put(`pull-request/reject/${id}`)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   return (
     <Dialog>
       <DialogTrigger className="relative flex flex-col p-3 w-full border-2 rounded-md gap-1 hover:bg-accent">
@@ -81,7 +102,7 @@ export function PrItem({props: { image, title, whatsappLinks, driveLinks, id }} 
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[800px]">
+      <DialogContent className="sm:max-w-[800px] w-auto">
         <DialogHeader className='flex flex-row items-center'>
           {image ? (
             <img src={image} className="w-6 h-6 rounded-sm mr-2.5 mt-[6px]" alt="" />
@@ -92,28 +113,33 @@ export function PrItem({props: { image, title, whatsappLinks, driveLinks, id }} 
         </DialogHeader>
           
         <div className='flex items-center gap-5'>
-          <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md gap-4 bg-zinc-900 items-end">
-            <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-muted-foreground'>Atual</span>
-            <PrLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
+          {action == 'update' && (
+            <>
+              <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md gap-4 bg-zinc-900 items-end">
+                <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-muted-foreground'>Atual</span>
+                <PrLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
 
-            <Separator />
+                {whatsappLinks.length > 0 && driveLinks.length > 0 && (<Separator />)}
 
-            <PrLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
+                <PrLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
+              </div>
+              <Separator orientation='vertical' />
+            </>
             
-          </div>
-          <Separator orientation='vertical' />
+          )}
+          
           <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md items-end gap-4">
             <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-green-400'>Nova</span>
             <PrLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
 
-            <Separator />
+            {whatsappLinks.length > 0 && driveLinks.length > 0 && (<Separator />)}
 
             <PrLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
           </div>
         </div>
         <div className='flex flex-row gap-2.5 w-full justify-end'>
-          <Button variant='outline' className='gap-2 text-red-500'><CircleX className='w-5 h-5' /> Rejeitar</Button>
-          <Button variant='outline' className='gap-2 text-green-500'><CircleCheckBig className='w-5 h-5' /> Aprovar</Button>
+          <Button variant='outline' className='gap-2 text-red-500' type='button' onClick={rejectPr}><CircleX className='w-5 h-5' /> Rejeitar</Button>
+          <Button variant='outline' className='gap-2 text-green-500' type='button' onClick={approvePr}><CircleCheckBig className='w-5 h-5' /> Aprovar</Button>
         </div>
 
 

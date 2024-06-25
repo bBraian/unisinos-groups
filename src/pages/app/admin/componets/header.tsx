@@ -20,7 +20,7 @@ export function Header() {
           </NavLink>
           <NavLink to="/admin/pr">
             <GitPullRequestArrow className="h-4 w-4" />
-            Pedidos
+            Pull Requests
           </NavLink>
         </nav>
 
