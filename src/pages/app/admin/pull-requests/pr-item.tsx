@@ -39,22 +39,33 @@ interface AppLinkProps {
   isEditing?: boolean;
 }
 
+interface SubjectProps {
+  title: string;
+  image: string;
+  courseId: number;
+  whatsappLinks: AppLinkProps[];
+  driveLinks: AppLinkProps[];
+  pullRequestId?: number;
+}
+
 interface ClassItemProps {
   props: {
-    id: number;
-    course: number;
-    title: string;
-    image: string;
+    id: number; 
     action: string;
-    whatsappLinks: AppLinkProps[];
-    driveLinks: AppLinkProps[];
+    status: string;
+    current: SubjectProps;
+    latest: SubjectProps;
   },
   setPullRequests: React.Dispatch<React.SetStateAction<PullRequestsProps[]>>;
 }
 
-export function PrItem({props: { image, title, whatsappLinks, driveLinks, id, action }, setPullRequests} :ClassItemProps) {
+export function PrItem({props: { status, current, latest, id, action }, setPullRequests} :ClassItemProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [open, setOpen] = useState(false);
+  const subjectImage = action == 'new' ? latest.image : current.image
+  const subjectTitle = action == 'new' ? latest.title : current.title
+  const subjectWhatsappLinks = action == 'new' ? latest.whatsappLinks : current.whatsappLinks
+  const subjectDriveLinks = action == 'new' ? latest.driveLinks : current.driveLinks
   async function approvePr() {
     const toastId = toast.loading('Aprovando Pull Request')
     setIsLoading(true)
@@ -111,23 +122,23 @@ export function PrItem({props: { image, title, whatsappLinks, driveLinks, id, ac
         )}
         <div className="inline-flex justify-between">
           <div className="flex flex-row items-center gap-1">
-            {image ? (
-              <img src={image} className="w-16 h-16 rounded-sm mr-2.5" alt="" />
+            {subjectImage ? (
+              <img src={subjectImage} className="w-16 h-16 rounded-sm mr-2.5" alt="" />
             ) : (
               <div className="w-16 h-16 rounded-sm mr-2.5 bg-muted flex justify-center items-center font-bold text-lg tracking-wider">
-                {getInitials(title)}
+                {getInitials(subjectTitle)}
               </div>
             )}
             <div className='flex flex-col gap-3.5'>
               <h2 className="font-semibold text-lg h-full hover:cursor-pointer hover:text-slate-500 leading-4">
-                {title}
+                {subjectTitle}
               </h2>
               <div className='flex gap-2'>
-                {whatsappLinks.length > 0 && (
-                  <Badge props={whatsIconProps} amount={whatsappLinks.length} />
+                {subjectWhatsappLinks.length > 0 && (
+                  <Badge props={whatsIconProps} amount={subjectWhatsappLinks.length} />
                 )}
-                {driveLinks.length > 0 && (
-                  <Badge props={svgDriveProps} amount={driveLinks.length} />
+                {subjectDriveLinks.length > 0 && (
+                  <Badge props={svgDriveProps} amount={subjectDriveLinks.length} />
                 )}
               </div>
             </div>
@@ -137,24 +148,24 @@ export function PrItem({props: { image, title, whatsappLinks, driveLinks, id, ac
       </DialogTrigger>
       <DialogContent className="sm:max-w-[800px] w-auto">
         <DialogHeader className='flex flex-row items-center'>
-          {image ? (
-            <img src={image} className="w-6 h-6 rounded-sm mr-2.5 mt-[6px]" alt="" />
+          {subjectImage ? (
+            <img src={subjectImage} className="w-6 h-6 rounded-sm mr-2.5 mt-[6px]" alt="" />
           ) : (
             <div className="w-6 h-6 rounded-sm mr-2.5 mt-[6px] bg-muted"></div>
           )}
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle>{subjectTitle}</DialogTitle>
         </DialogHeader>
           
         <div className='flex items-center gap-5'>
-          {action == 'update' && (
+          {action != 'new' && (
             <>
               <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md gap-4 bg-zinc-900 items-end">
                 <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-muted-foreground'>Atual</span>
-                <PrLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
+                <PrLink type='whatsapp' appClassLinks={current.whatsappLinks} classTitle={subjectTitle} classId={id} />
 
-                {whatsappLinks.length > 0 && driveLinks.length > 0 && (<Separator />)}
+                {current.whatsappLinks.length > 0 && current.driveLinks.length > 0 && (<Separator />)}
 
-                <PrLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
+                <PrLink type='drive' appClassLinks={current.driveLinks} classTitle={subjectTitle} classId={id} />
               </div>
               <Separator orientation='vertical' />
             </>
@@ -163,11 +174,11 @@ export function PrItem({props: { image, title, whatsappLinks, driveLinks, id, ac
           
           <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md items-end gap-4">
             <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-green-400'>Nova</span>
-            <PrLink type='whatsapp' appClassLinks={whatsappLinks} classTitle={title} classId={id} />
+            <PrLink type='whatsapp' appClassLinks={latest.whatsappLinks} classTitle={subjectTitle} classId={id} />
 
-            {whatsappLinks.length > 0 && driveLinks.length > 0 && (<Separator />)}
+            {latest.whatsappLinks.length > 0 && latest.driveLinks.length > 0 && (<Separator />)}
 
-            <PrLink type='drive' appClassLinks={driveLinks} classTitle={title} classId={id} />
+            <PrLink type='drive' appClassLinks={latest.driveLinks} classTitle={subjectTitle} classId={id} />
           </div>
         </div>
         <div className='flex flex-row gap-2.5 w-full justify-end'>

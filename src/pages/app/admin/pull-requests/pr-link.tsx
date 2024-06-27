@@ -4,10 +4,10 @@ import svgWhatsIcon from '../../../../assets/whatsapp.svg'
 import svgDriveIcon from '../../../../assets/drive.svg'
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/badge";
 
 interface LinkProps extends AppLinksProps {
   isEditting: boolean
+  pullRequestId?: number
 }
 
 interface CustomAppLinkProps {
@@ -51,7 +51,7 @@ export function PrLink({type, appClassLinks} :CustomAppLinkProps) {
             
               {appLink.map((link) => {
                 return (
-                  <div className='relative flex w-full gap-2' key={link.id}>
+                  <div className={`relative flex w-full gap-2 ${link.pullRequestId && 'bg-[#21733026]'}`} key={link.id}>
                     <div className="flex flex-col p-3 w-full border-2 rounded-md overflow-hidden items-end gap-2">
                       <div className='flex w-full items-center gap-2'>
                         <Label htmlFor="name" className="text-right">Nome</Label>
