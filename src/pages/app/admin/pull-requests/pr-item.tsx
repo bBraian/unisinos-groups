@@ -16,6 +16,9 @@ import { Badge } from '@/components/badge';
 import { PrLink } from './pr-link';
 import { Button } from '@/components/ui/button';
 import { api } from '@/api/axios';
+import { toast } from 'sonner';
+import { useState } from 'react';
+import { PullRequestsProps } from '@/@types/PullRequests';
 
 const whatsIconProps = {
     badgeStyle: 'bg-green-400',
@@ -45,31 +48,61 @@ interface ClassItemProps {
     action: string;
     whatsappLinks: AppLinkProps[];
     driveLinks: AppLinkProps[];
-  }
+  },
+  setPullRequests: React.Dispatch<React.SetStateAction<PullRequestsProps[]>>;
 }
 
-export function PrItem({props: { image, title, whatsappLinks, driveLinks, id, action }} :ClassItemProps) {
+export function PrItem({props: { image, title, whatsappLinks, driveLinks, id, action }, setPullRequests} :ClassItemProps) {
+  const [isLoading, setIsLoading] = useState(false)
+  const [open, setOpen] = useState(false);
   async function approvePr() {
+    const toastId = toast.loading('Aprovando Pull Request')
+    setIsLoading(true)
     api.put(`pull-request/approve/${id}`)
     .then((res) => {
       console.log(res)
+      toast.success('Pull request aprovado com sucesso!')
+      setIsLoading(false)
+      toast.dismiss(toastId)
+      setOpen(false)
+      setPullRequests((prevState) => prevState.filter(pr => pr.id !== id));
     })
-    .catch((err) => {
-      console.log(err)
+    .catch((e) => {
+      if(e.response?.data?.message) {
+        toast.error(e.response.data.message);
+      } else {
+          toast.error('Erro ao aprovar Pull Request');
+      }
+      setIsLoading(false)
+      console.log(e)
+      toast.dismiss(toastId)
     })
   }
+
   async function rejectPr() {
+    const toastId = toast.loading('Rejeitando Pull Request')
+    setIsLoading(true)
     api.put(`pull-request/reject/${id}`)
     .then((res) => {
       console.log(res)
+      toast.success('Pull request rejeitado com sucesso!')
+      setIsLoading(false)
+      toast.dismiss(toastId)
     })
-    .catch((err) => {
-      console.log(err)
+    .catch((e) => {
+      if(e.response?.data?.message) {
+        toast.error(e.response.data.message);
+      } else {
+          toast.error('Erro ao reprovar Pull Request');
+      }
+      setIsLoading(false)
+      console.log(e)
+      toast.dismiss(toastId)
     })
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="relative flex flex-col p-3 w-full border-2 rounded-md gap-1 hover:bg-accent">
         {id == 0 && (
           <div className="absolute top-0 left-0 bg-orange-400 text-white text-[11px] font-bold flex items-center justify-center rounded-full w-5 h-5 transform -translate-x-1/2 -translate-y-1/2">
@@ -138,10 +171,9 @@ export function PrItem({props: { image, title, whatsappLinks, driveLinks, id, ac
           </div>
         </div>
         <div className='flex flex-row gap-2.5 w-full justify-end'>
-          <Button variant='outline' className='gap-2 text-red-500' type='button' onClick={rejectPr}><CircleX className='w-5 h-5' /> Rejeitar</Button>
-          <Button variant='outline' className='gap-2 text-green-500' type='button' onClick={approvePr}><CircleCheckBig className='w-5 h-5' /> Aprovar</Button>
+          <Button variant='outline' className='gap-2 text-red-500' type='button' disabled={isLoading} onClick={rejectPr}><CircleX className='w-5 h-5' /> Rejeitar</Button>
+          <Button variant='outline' className='gap-2 text-green-500' type='button' disabled={isLoading} onClick={approvePr}><CircleCheckBig className='w-5 h-5' /> Aprovar</Button>
         </div>
-
 
       </DialogContent>
     </Dialog>

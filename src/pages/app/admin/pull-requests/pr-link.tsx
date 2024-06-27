@@ -33,9 +33,6 @@ const prLinkProps = {
 
 export function PrLink({type, appClassLinks} :CustomAppLinkProps) {
   const [appLink, setAppLink] = useState<LinkProps[]>([]);
-  const [nameInput, setNameInput] = useState("");
-  const [linkInput, setLinkInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const linkWithIsEditing = appClassLinks.map(link => ({

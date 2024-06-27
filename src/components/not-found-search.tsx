@@ -6,7 +6,7 @@ const NoFoundSearch = () => {
       <SearchX size={64} className="text-[#677183]" />
 
       <h1 className="text-[#2f2f2f] font-semibold text-[18px]">
-        A sua busca não encontrou nenhum resultado{' '}
+        Nenhum registro encontrado{' '}
       </h1>
 
       <h1 className="font-medium text-[#677183] text-[14px]">
