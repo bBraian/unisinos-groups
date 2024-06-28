@@ -1,4 +1,4 @@
-import { Building, ChevronDown, LogOut } from 'lucide-react'
+import { ChevronDown, LogOut } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
