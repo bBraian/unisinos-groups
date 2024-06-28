@@ -13,8 +13,7 @@ interface LinkProps extends AppLinksProps {
 interface CustomAppLinkProps {
   type: 'whatsapp' | 'drive';
   appClassLinks: AppLinksProps[];
-  classTitle: string;
-  classId: number;
+  linkIdUpdated?: number;
 }
 
 const prLinkProps = {
@@ -31,7 +30,7 @@ const prLinkProps = {
 }
 
 
-export function PrLink({type, appClassLinks} :CustomAppLinkProps) {
+export function PrLink({type, appClassLinks, linkIdUpdated} :CustomAppLinkProps) {
   const [appLink, setAppLink] = useState<LinkProps[]>([]);
 
   useEffect(() => {
@@ -51,7 +50,14 @@ export function PrLink({type, appClassLinks} :CustomAppLinkProps) {
             
               {appLink.map((link) => {
                 return (
-                  <div className={`relative flex w-full gap-2 ${link.pullRequestId && 'bg-[#21733026]'}`} key={link.id}>
+                  <div 
+                    className={`
+                      relative flex w-full gap-2 
+                      ${link.pullRequestId && 'bg-[#21733026]'}
+                      ${linkIdUpdated == link.id && 'bg-[#f88b4926]'}
+                    `} 
+                    key={link.id}
+                  >
                     <div className="flex flex-col p-3 w-full border-2 rounded-md overflow-hidden items-end gap-2">
                       <div className='flex w-full items-center gap-2'>
                         <Label htmlFor="name" className="text-right">Nome</Label>

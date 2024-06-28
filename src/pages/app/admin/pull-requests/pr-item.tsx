@@ -46,6 +46,7 @@ interface SubjectProps {
   whatsappLinks: AppLinkProps[];
   driveLinks: AppLinkProps[];
   pullRequestId?: number;
+  linkIdUpdated?: number;
 }
 
 interface ClassItemProps {
@@ -59,7 +60,7 @@ interface ClassItemProps {
   setPullRequests: React.Dispatch<React.SetStateAction<PullRequestsProps[]>>;
 }
 
-export function PrItem({props: { status, current, latest, id, action }, setPullRequests} :ClassItemProps) {
+export function PrItem({props: { current, latest, id, action }, setPullRequests} :ClassItemProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [open, setOpen] = useState(false);
   const subjectImage = action == 'new' ? latest.image : current.image
@@ -161,11 +162,11 @@ export function PrItem({props: { status, current, latest, id, action }, setPullR
             <>
               <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md gap-4 bg-zinc-900 items-end">
                 <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-muted-foreground'>Atual</span>
-                <PrLink type='whatsapp' appClassLinks={current.whatsappLinks} classTitle={subjectTitle} classId={id} />
+                <PrLink type='whatsapp' appClassLinks={current.whatsappLinks} linkIdUpdated={current.linkIdUpdated} />
 
                 {current.whatsappLinks.length > 0 && current.driveLinks.length > 0 && (<Separator />)}
 
-                <PrLink type='drive' appClassLinks={current.driveLinks} classTitle={subjectTitle} classId={id} />
+                <PrLink type='drive' appClassLinks={current.driveLinks} linkIdUpdated={current.linkIdUpdated} />
               </div>
               <Separator orientation='vertical' />
             </>
@@ -174,11 +175,11 @@ export function PrItem({props: { status, current, latest, id, action }, setPullR
           
           <div className="relative max-w-[380px] flex flex-col p-4 w-full border-2 rounded-md items-end gap-4">
             <span className='absolute -top-1 text-xs transform -translate-y-1/2 px-2 py-1 border-2 rounded-md bg-zinc-900 text-green-400'>Nova</span>
-            <PrLink type='whatsapp' appClassLinks={latest.whatsappLinks} classTitle={subjectTitle} classId={id} />
+            <PrLink type='whatsapp' appClassLinks={latest.whatsappLinks} />
 
             {latest.whatsappLinks.length > 0 && latest.driveLinks.length > 0 && (<Separator />)}
 
-            <PrLink type='drive' appClassLinks={latest.driveLinks} classTitle={subjectTitle} classId={id} />
+            <PrLink type='drive' appClassLinks={latest.driveLinks} />
           </div>
         </div>
         <div className='flex flex-row gap-2.5 w-full justify-end'>
