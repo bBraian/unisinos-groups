@@ -14,6 +14,7 @@ import { Loading } from './components/loading';
 import { NotFound } from './pages/error/NotFound';
 import { NotAuthorized } from './pages/error/NotAuthorized';
 import { InDevelopment } from './pages/error/InDevelopment';
+import { AdminFeedback } from './pages/app/admin/feedbacks';
 
 export function Router() {
   const { loading, user } = useContext(AuthContext)
@@ -42,6 +43,7 @@ export function Router() {
         }>
         <Route path='' element={<Admin />} />
         <Route path='pr' element={<PullRequests />} />
+        <Route path='feedback' element={<AdminFeedback />} />
       </Route>
       
 
