@@ -6,6 +6,7 @@ import { NoFoundSearch } from '@/components/not-found-search'
 import { ClassItem } from '@/components/class-item'
 import { api } from '@/api/axios.tsx'
 import { GroupsProps } from '@/@types/Groups.ts'
+import { Link } from 'react-router-dom'
 
 export function Home() {
   const [searchValue, setSearchValue] = useState('')
@@ -27,13 +28,10 @@ export function Home() {
 }, [searchValue])
 
   async function getGroups() {
-    setTimeout(async () => {
-      const { data } = await api.get('subject')
-      setGroups(data.subjects)
-      setFilteredGroups(data.subjects)
-      setLoading(false)
-    }, 1000);
-     
+    const { data } = await api.get('subject')
+    setGroups(data.subjects)
+    setFilteredGroups(data.subjects)
+    setLoading(false)
   }
   return (
     <>
@@ -60,9 +58,13 @@ export function Home() {
                   {filteredGroups.map((group) => (
                     <ClassItem key={group.id} props={group} />
                   ))}
-                  <p className="text-muted-foreground font-semibold">
-                    Não há mais registros
-                  </p>
+                  <div className='flex w-full justify-between'>
+                    <p className="text-muted-foreground font-semibold">
+                      Não há mais registros
+                    </p>
+                    <Link to="/feedback" className='text-muted-foreground hover:text-white font-semibold'>Deixar um feedback</Link>
+                  </div>
+                  
                 </Fragment>
               )}
             </Fragment>

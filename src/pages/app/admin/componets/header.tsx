@@ -5,12 +5,15 @@ import { AccountMenu } from './account-menu'
 import { ThemeToggle } from '@/components/theme/theme-toggle'
 import { Separator } from '@/components/ui/separator'
 import { NavLink } from './nav-link'
+import { Link } from 'react-router-dom'
 
 export function Header() {
   return (
     <div className="border-b">
       <div className="flex h-16 items-center gap-6 px-6">
-        <img className="h-6 w-6" src={appLogo} alt="" />
+        <Link to="/">
+          <img className="h-6 w-6" src={appLogo} alt="" />
+        </Link>
 
         <Separator orientation="vertical" className="h-6" />
         <nav className="flex items-center space-x-4 lg:space-x-6">

@@ -100,6 +100,8 @@ export function PrItem({props: { current, latest, id, action }, setPullRequests}
       toast.success('Pull request rejeitado com sucesso!')
       setIsLoading(false)
       toast.dismiss(toastId)
+      setOpen(false)
+      setPullRequests((prevState) => prevState.filter(pr => pr.id !== id));
     })
     .catch((e) => {
       if(e.response?.data?.message) {

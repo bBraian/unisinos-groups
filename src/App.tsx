@@ -1,23 +1,28 @@
 import './global.css'
 
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-import { RouterProvider } from 'react-router-dom'
 import { Toaster } from "@/components/ui/sonner"
 
 import { ThemeProvider } from './components/theme/theme-provider'
-import { router } from './routes'
 import { AppProvider } from './context/AppContext'
+import { AuthProvider } from './context/AuthContext'
+import { Router } from './Router'
+import { BrowserRouter } from "react-router-dom"
 
 export function App() {
   return (
     <HelmetProvider>
-      <AppProvider>
-        <ThemeProvider storageKey="unigroups-theme" defaultTheme="dark">
-          <Helmet titleTemplate="%s | Unisinos Groups" />
-          <Toaster richColors />
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      </AppProvider>
+      <AuthProvider>
+        <AppProvider>
+          <BrowserRouter>
+            <ThemeProvider storageKey="unigroups-theme" defaultTheme="dark">
+              <Helmet titleTemplate="%s | Unisinos Groups" />
+              <Toaster richColors />
+              <Router />
+            </ThemeProvider>
+          </BrowserRouter>
+        </AppProvider>
+      </AuthProvider>
     </HelmetProvider>
   )
 }

@@ -7,6 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { api } from '@/api/axios'
+import { useContext } from 'react'
+import { AuthContext } from '@/context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -16,6 +20,8 @@ const signInForm = z.object({
 type SignInForm = z.infer<typeof signInForm>
 
 export function SignIn() {
+  const { signIn } = useContext(AuthContext)
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -25,16 +31,45 @@ export function SignIn() {
   })
 
   async function handleSignIn(data: SignInForm) {
-    console.log(data)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    toast.success('Logado com sucesso')
+    const toastId = toast.loading('Fazendo Login')
+    const { email, password } = data
+    api.post('auth/session', { email: email, password: password })
+    .then((res) => {
+      console.log(res)
+      if(res.status === 201) {
+        signIn(res.data.access_token)
+        .then(() => {
+          toast.success('Logado com sucesso')
+          navigate('/admin')
+        })
+        .catch((e: any) => {
+          console.log(e)
+          toast.error('Erro ao fazer login')
+        })
+      } else {
+        toast.error('Credenciais inválidas')
+      }
+      toast.dismiss(toastId)
+    })
+    .catch((err) => {
+      if(err.response?.data?.message) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error('Credenciais inválidas')
+      }
+      console.log(err)
+      toast.dismiss(toastId)
+    })
   }
+
+    
+  
 
   return (
     <>
       <Helmet title="Login" />
       <div className="p-4">
-        <div className="flex w-full w-80 flex-col justify-center gap-6">
+        <div className="flex w-full flex-col justify-center gap-6">
           <div className="flex flex-col gap-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
               Fazer login
