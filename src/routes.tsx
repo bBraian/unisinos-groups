@@ -8,6 +8,7 @@ import { AdminLayout } from './pages/layouts/admin'
 import { Feedback } from './pages/app/feedback'
 import { Admin } from './pages/app/admin/dashboard'
 import { PullRequests } from './pages/app/admin/pull-requests'
+import { AdminFeedback } from './pages/app/admin/feedbacks'
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
     children: [
       { path: '', element: <Admin /> },
       { path: 'pr', element: <PullRequests /> },
+      { path: 'feedback', element: <AdminFeedback /> },
     ],
   },
   {

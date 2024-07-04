@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom"
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from "@/components/ui/textarea"
+import { api } from "@/api/axios";
 
 const feedbackInForm = z.object({
   user_name: z.string().min(3),
@@ -29,13 +29,28 @@ export function Feedback() {
     resolver: zodResolver(feedbackInForm)
   })
 
-  async function handleFeedback(data: FeedbackInForm) {
-    console.log(data)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    toast.success('Feedback enviado com sucesso!')
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    navigate("/");
-  }
+  function handleSendFeedback(data: FeedbackInForm) {
+    const toastId = toast.loading('Enviando feedback')
+    const {user_name, feedback} = data
+    api.post(`feedback`, { 
+        user_name: user_name,
+        feedback: feedback
+     })
+    .then((response) => {
+        console.log(response)
+        toast.success('Feedback enviado')
+        toast.dismiss(toastId)
+        navigate("/");
+    }).catch((e) => {
+        if(e.response?.data?.message) {
+            toast.error(e.response.data.message);
+        } else {
+            toast.error('Erro ao enviar feedback');
+        }
+        console.log(e)
+        toast.dismiss(toastId)
+    })
+}
 
   return(
     <>
@@ -49,7 +64,7 @@ export function Feedback() {
                 Deixe um feedback e nos ajude a melhorar!
               </p>
           </div>
-          <form className="space-y-4 w-96 px-5" onSubmit={handleSubmit(handleFeedback)}>
+          <form className="space-y-4 w-96 px-5" onSubmit={handleSubmit(handleSendFeedback)}>
             <div className="space-y-2">
               <Label htmlFor="user_name">Nome</Label>
               <Input id="user_name" type="user_name" {...register('user_name')} />
@@ -70,7 +85,7 @@ export function Feedback() {
               )}
             </div>
 
-            <Button className="w-full" type="submit" disabled={isSubmitting}>
+            <Button className="w-full" type="submit"  disabled={isSubmitting}>
               Enviar Feedback
             </Button>
           </form>

@@ -1,4 +1,4 @@
-import { GitPullRequestArrow, Home } from 'lucide-react'
+import { GitPullRequestArrow, Home, MessageSquareText } from 'lucide-react'
 import appLogo from '../../../../assets/uni.png'
 
 import { AccountMenu } from './account-menu'
@@ -21,6 +21,10 @@ export function Header() {
           <NavLink to="/admin/pr">
             <GitPullRequestArrow className="h-4 w-4" />
             Pull Requests
+          </NavLink>
+          <NavLink to="/admin/feedback">
+            <MessageSquareText className="h-4 w-4" />
+            Feedbacks
           </NavLink>
         </nav>
 
