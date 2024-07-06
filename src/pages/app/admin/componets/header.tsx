@@ -1,4 +1,4 @@
-import { GitPullRequestArrow, Home, MessageSquareText } from 'lucide-react'
+import { FileSliders, GitPullRequestArrow, Home, MessageSquareText } from 'lucide-react'
 import appLogo from '../../../../assets/uni.png'
 
 import { AccountMenu } from './account-menu'
@@ -6,8 +6,12 @@ import { ThemeToggle } from '@/components/theme/theme-toggle'
 import { Separator } from '@/components/ui/separator'
 import { NavLink } from './nav-link'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '@/context/AuthContext'
 
 export function Header() {
+  const { user } = useContext(AuthContext)
+  console.log(user)
   return (
     <div className="border-b">
       <div className="flex h-16 items-center gap-6 px-6">
@@ -29,6 +33,11 @@ export function Header() {
             <MessageSquareText className="h-4 w-4" />
             Feedbacks
           </NavLink>
+          <NavLink to="/admin/logs">
+            <FileSliders className="h-4 w-4" />
+            Logs
+          </NavLink>
+          
         </nav>
 
         <div className="ml-auto flex items-center gap-2">

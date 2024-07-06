@@ -8,9 +8,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { api } from '@/api/axios'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '@/context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { MoonLoader } from 'react-spinners'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -21,20 +22,23 @@ type SignInForm = z.infer<typeof signInForm>
 
 export function SignIn() {
   const { signIn } = useContext(AuthContext)
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = useForm<SignInForm>({
     resolver: zodResolver(signInForm)
   })
 
   async function handleSignIn(data: SignInForm) {
+    setIsLoading(true)
     const toastId = toast.loading('Fazendo Login')
     const { email, password } = data
     api.post('auth/session', { email: email, password: password })
     .then((res) => {
+      setIsLoading(false)
       console.log(res)
       if(res.status === 201) {
         signIn(res.data.access_token)
@@ -52,6 +56,7 @@ export function SignIn() {
       toast.dismiss(toastId)
     })
     .catch((err) => {
+      setIsLoading(true)
       if(err.response?.data?.message) {
         toast.error(err.response.data.message);
       } else {
@@ -100,8 +105,8 @@ export function SignIn() {
               )}
             </div>
 
-            <Button className="w-full" type="submit" disabled={isSubmitting}>
-              Logar
+            <Button className="w-full gap-2" type="submit" disabled={isLoading}>
+              Logar {isLoading && <MoonLoader size={12} />}
             </Button>
           </form>
         </div>

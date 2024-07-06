@@ -16,12 +16,9 @@ export function PullRequests() {
   }, [])
 
   async function getPullRequests() {
-    setTimeout(async () => {
-      const { data } = await api.get('pull-request')
-      setPullRequests(data)
-      setLoading(false)
-    }, 1000);
-     
+    const { data } = await api.get('pull-request')
+    setPullRequests(data)
+    setLoading(false)
   }
   return (
     <>
