@@ -101,7 +101,7 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
       link: linkInput,
       type
     })
-    .then((response) => {
+    .then(() => {
       toast.success('Link enviado para aprovação')
       setIsLoading(false)
       handleCancelNewClassLink(id)

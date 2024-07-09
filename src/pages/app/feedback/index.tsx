@@ -36,7 +36,7 @@ export function Feedback() {
         user_name: user_name,
         feedback: feedback
      })
-    .then((response) => {
+    .then(() => {
         toast.success('Feedback enviado')
         toast.dismiss(toastId)
         navigate("/");
