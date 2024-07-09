@@ -13,10 +13,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Menu } from 'lucide-react'
+import { Menu, MessagesSquare } from 'lucide-react'
 import { Button } from './ui/button'
 
 export function Header() {
+  function handleCallSupport() {
+    window.open("https://api.whatsapp.com/send?phone=5551996268989");
+  }
   return (
     <div className="border-b">
       <div className="flex h-16 items-center gap-2 px-6">
@@ -48,12 +51,16 @@ export function Header() {
                 <SheetHeader>
                   <SheetTitle></SheetTitle>
                 </SheetHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                  <ThemeToggle />
+                <div className="flex flex-col items-end gap-4 py-4">
+                  <div className="flex gap-4">
+                    <ToggleCourses />
+                    <ThemeToggle />
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                  <ToggleCourses />
+                  <div className="w-full">
+                    <Button variant="outline" className='w-full' onClick={handleCallSupport}>
+                      <MessagesSquare className="mr-2 h-4 w-4"/>
+                      Suporte
+                    </Button>
                   </div>
                 </div>
               </SheetContent>

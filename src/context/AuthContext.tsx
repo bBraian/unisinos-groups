@@ -7,7 +7,6 @@ const AuthContext = createContext({} as any)
 const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  console.log(user)
   useEffect(() => {
     async function initApp() {
       const { 'uni-groups.accessToken': access_token } = parseCookies()
@@ -41,7 +40,7 @@ const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
       
       return true
     } catch (error) {
-      console.log(error)
+      console.error(error)
       return false
     }
   }

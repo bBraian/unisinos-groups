@@ -71,8 +71,7 @@ export function PrItem({props: { current, latest, id, action }, setPullRequests}
     const toastId = toast.loading('Aprovando Pull Request')
     setIsLoading(true)
     api.put(`pull-request/approve/${id}`)
-    .then((res) => {
-      console.log(res)
+    .then(() => {
       toast.success('Pull request aprovado com sucesso!')
       setIsLoading(false)
       toast.dismiss(toastId)
@@ -86,7 +85,7 @@ export function PrItem({props: { current, latest, id, action }, setPullRequests}
           toast.error('Erro ao aprovar Pull Request');
       }
       setIsLoading(false)
-      console.log(e)
+      console.error(e)
       toast.dismiss(toastId)
     })
   }
@@ -95,8 +94,7 @@ export function PrItem({props: { current, latest, id, action }, setPullRequests}
     const toastId = toast.loading('Rejeitando Pull Request')
     setIsLoading(true)
     api.put(`pull-request/reject/${id}`)
-    .then((res) => {
-      console.log(res)
+    .then(() => {
       toast.success('Pull request rejeitado com sucesso!')
       setIsLoading(false)
       toast.dismiss(toastId)
@@ -110,7 +108,7 @@ export function PrItem({props: { current, latest, id, action }, setPullRequests}
           toast.error('Erro ao reprovar Pull Request');
       }
       setIsLoading(false)
-      console.log(e)
+      console.error(e)
       toast.dismiss(toastId)
     })
   }

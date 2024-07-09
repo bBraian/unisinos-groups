@@ -102,7 +102,6 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
       type
     })
     .then((response) => {
-      console.log(response)
       toast.success('Link enviado para aprovação')
       setIsLoading(false)
       handleCancelNewClassLink(id)
@@ -114,7 +113,6 @@ export function AppLink({type, appClassLinks, classTitle, classId} :CustomAppLin
           toast.error('Erro ao enviar link para aprovação');
       }
       setIsLoading(false)
-      console.log(e)
       toast.dismiss(toastId)
     })
   }

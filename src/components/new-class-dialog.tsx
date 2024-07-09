@@ -61,8 +61,7 @@ export function NewClassDialog() {
             whatsappLinks: removeIsEditing(whatsappLinks),
             driveLinks: removeIsEditing(driveLinks)
          })
-        .then((response) => {
-            console.log(response)
+        .then(() => {
             toast.success('Disciplina enviada para aprovação')
             setIsLoading(false)
             reset()
@@ -73,7 +72,6 @@ export function NewClassDialog() {
             } else {
                 toast.error('Erro ao criar disciplina');
             }
-            console.log(e)
             setIsLoading(false)
             toast.dismiss(toastId)
         })

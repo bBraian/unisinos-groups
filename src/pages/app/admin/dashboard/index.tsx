@@ -17,7 +17,6 @@ export function Admin() {
     const { data } = await api.get('dashborad/principal')
     setDashboardMetrics(data.dashboard)
     setLoading(false)
-    console.log(data)
   }
 
   if(loading) {

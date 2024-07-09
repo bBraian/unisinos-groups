@@ -13,7 +13,6 @@ export function Home() {
   const [loading, setLoading] = useState(true)
   const [groups, setGroups] = useState<GroupsProps[]>([])
   const [filteredGroups, setFilteredGroups] = useState<GroupsProps[]>([])
-  console.log(groups)
 
   useEffect(() => {
     getGroups()

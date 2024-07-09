@@ -16,11 +16,10 @@ export function ToggleCourses() {
   //     setCourse(res.data.course)
   //   })
   //   .catch((err) => {
-  //     console.log(err)
+  //     console.error(err)
   //   })
   // }
 
-  // console.log(course)
   
   return (
     <Select>

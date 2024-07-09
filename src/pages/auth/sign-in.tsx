@@ -39,7 +39,6 @@ export function SignIn() {
     api.post('auth/session', { email: email, password: password })
     .then((res) => {
       setIsLoading(false)
-      console.log(res)
       if(res.status === 201) {
         signIn(res.data.access_token)
         .then(() => {
@@ -47,7 +46,7 @@ export function SignIn() {
           navigate('/admin')
         })
         .catch((e: any) => {
-          console.log(e)
+          console.error(e)
           toast.error('Erro ao fazer login')
         })
       } else {
@@ -62,7 +61,7 @@ export function SignIn() {
       } else {
         toast.error('Credenciais inválidas')
       }
-      console.log(err)
+      console.error(err)
       toast.dismiss(toastId)
     })
   }

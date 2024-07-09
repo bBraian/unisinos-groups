@@ -6,12 +6,8 @@ import { ThemeToggle } from '@/components/theme/theme-toggle'
 import { Separator } from '@/components/ui/separator'
 import { NavLink } from './nav-link'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import { AuthContext } from '@/context/AuthContext'
 
 export function Header() {
-  const { user } = useContext(AuthContext)
-  console.log(user)
   return (
     <div className="border-b">
       <div className="flex h-16 items-center gap-6 px-6">

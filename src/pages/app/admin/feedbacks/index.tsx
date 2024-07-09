@@ -10,7 +10,6 @@ import { NoFoundSearch } from "@/components/not-found-search";
 export function AdminFeedback() { 
   const [loading, setLoading] = useState(true)
   const [feedbacks, setFeedbacks] = useState<FeedbacksProps[]>([])
-  console.log(feedbacks)
 
   useEffect(() => {
     getFeedbacks()

@@ -9,7 +9,6 @@ import { PullRequestsProps } from '@/@types/PullRequests'
 export function PullRequests() {
   const [loading, setLoading] = useState(true)
   const [pullRequests, setPullRequests] = useState<PullRequestsProps[]>([])
-  console.log(pullRequests)
 
   useEffect(() => {
     getPullRequests()

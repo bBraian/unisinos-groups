@@ -37,7 +37,6 @@ export function Feedback() {
         feedback: feedback
      })
     .then((response) => {
-        console.log(response)
         toast.success('Feedback enviado')
         toast.dismiss(toastId)
         navigate("/");
@@ -47,7 +46,7 @@ export function Feedback() {
         } else {
             toast.error('Erro ao enviar feedback');
         }
-        console.log(e)
+        console.error(e)
         toast.dismiss(toastId)
     })
 }
