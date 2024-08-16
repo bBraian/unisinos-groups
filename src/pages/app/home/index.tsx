@@ -7,12 +7,28 @@ import { ClassItem } from '@/components/class-item'
 import { api } from '@/api/axios.tsx'
 import { GroupsProps } from '@/@types/Groups.ts'
 import { Link } from 'react-router-dom'
+import { parseCookies, setCookie } from 'nookies'
+import { toast } from 'sonner'
 
 export function Home() {
   const [searchValue, setSearchValue] = useState('')
   const [loading, setLoading] = useState(true)
   const [groups, setGroups] = useState<GroupsProps[]>([])
   const [filteredGroups, setFilteredGroups] = useState<GroupsProps[]>([])
+
+  const { 'uni-groups.userAlreadyAlerted': userAlreadyAlerted } = parseCookies()
+  console.log(userAlreadyAlerted)
+  if(userAlreadyAlerted != "true") {
+    toast.info("Este site está hospedado em um servidor gratuito!", {
+      description: 'Portanto o seu carregamento pode levar cerca de um minuto, especialmente se ele não foi acessado recentemente.',
+      position: 'top-center',
+      duration: 10000
+    })
+    setCookie(null, 'uni-groups.userAlreadyAlerted', 'true', {
+      maxAge: 7 * 24 * 60 * 60, // 1 week in seconds,
+      path: '/'
+    })
+  }
 
   useEffect(() => {
     getGroups()
