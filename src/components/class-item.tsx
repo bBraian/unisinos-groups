@@ -56,8 +56,8 @@ export function ClassItem({props: { image, title, whatsappLinks, driveLinks, id 
             <History size={15} strokeWidth={3} />
           </div>
         )}
-        <div className="inline-flex justify-between">
-          <div className="flex flex-row items-center gap-1">
+        <div className="inline-flex justify-between w-full">
+          <div className="flex flex-row items-center gap-1 w-full">
             {image ? (
               <img src={image} className="w-16 h-16 rounded-sm mr-2.5" alt="" />
             ) : (
@@ -65,8 +65,8 @@ export function ClassItem({props: { image, title, whatsappLinks, driveLinks, id 
                 {getInitials(title)}
               </div>
             )}
-            <div className='flex flex-col gap-3.5'>
-              <h2 className="font-semibold text-lg h-full hover:cursor-pointer hover:text-slate-500 leading-4">
+            <div className='flex flex-col gap-3.5 flex-1 w-full'>
+              <h2 className="font-semibold text-lg h-full hover:cursor-pointer hover:text-slate-500 leading-4 text-left">
                 {title}
               </h2>
               <div className='flex gap-2'>
@@ -81,7 +81,6 @@ export function ClassItem({props: { image, title, whatsappLinks, driveLinks, id 
             
           </div>
         </div>
-        {/* <div className='absolute w-2 bg-green-500 top-0 right-0 bottom-0 m-2 rounded-[2px]'></div> */}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className='flex flex-row items-center'>
