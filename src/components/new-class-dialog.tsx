@@ -8,13 +8,14 @@ import {
 
 import { Separator } from '@/components/ui/separator';
 import { Plus } from 'lucide-react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { AppLinkNewClass } from './app-link-new-class';
 import { toast } from "sonner";
 import { api } from "@/api/axios";
+import { ALL_COURSES, AppContext } from "@/context/AppContext";
 
 
 interface AppLinkProps {
@@ -26,6 +27,7 @@ interface AppLinkProps {
 }
 
 export function NewClassDialog() {
+    const { courses, selectedCourse } = useContext(AppContext)
     const [name, setName] = useState('')
     const [course, setCourse] = useState('')
     const [whatsappLinks, setWhatsappLinks] = useState<AppLinkProps[]>([])
@@ -40,7 +42,14 @@ export function NewClassDialog() {
         setDriveLinks([])
         setOpen(false)
     }
-    
+
+    function handleOpenChange(isOpen: boolean) {
+        if(isOpen && course == '' && selectedCourse != ALL_COURSES) {
+            setCourse(selectedCourse)
+        }
+        setOpen(isOpen)
+    }
+
     function handleSendNewClassToApproval() {
         if(name == '') {
             toast.error('Preencha o nome do curso')
@@ -78,7 +87,7 @@ export function NewClassDialog() {
     }
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
                 <Button variant="outline">
                     <Plus className="mr-2 h-4 w-4"  />
@@ -104,8 +113,9 @@ export function NewClassDialog() {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
-                                <SelectItem value="1">Análise e Desenvolvimento de Sistemas</SelectItem>
-                                <SelectItem value="2">Ciência da Computação</SelectItem>
+                                {courses.map((item) => (
+                                    <SelectItem key={item.id} value={String(item.id)}>{item.name}</SelectItem>
+                                ))}
                             </SelectGroup>
                         </SelectContent>
                     </Select>

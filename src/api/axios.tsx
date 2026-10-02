@@ -2,8 +2,8 @@ import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 export const api = axios.create({
-    // baseURL: 'http://localhost:3332',
-    baseURL: 'https://unisinos-groups-api.onrender.com',
+    // Para desenvolvimento local, crie um .env.local com VITE_API_URL=http://localhost:3332
+    baseURL: import.meta.env.VITE_API_URL ?? 'https://unisinos-groups-api.onrender.com',
 })
 
 // const navigate = useNavigate();

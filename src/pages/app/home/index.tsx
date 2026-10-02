@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import { SearchInput } from '@/components/search-input'
 import { LoadingSkeleton } from '@/components/loading-skeleton'
 import { NoFoundSearch } from '@/components/not-found-search'
@@ -9,12 +9,13 @@ import { GroupsProps } from '@/@types/Groups.ts'
 import { Link } from 'react-router-dom'
 import { parseCookies, setCookie } from 'nookies'
 import { toast } from 'sonner'
+import { ALL_COURSES, AppContext } from '@/context/AppContext'
 
 export function Home() {
+  const { selectedCourse } = useContext(AppContext)
   const [searchValue, setSearchValue] = useState('')
   const [loading, setLoading] = useState(true)
   const [groups, setGroups] = useState<GroupsProps[]>([])
-  const [filteredGroups, setFilteredGroups] = useState<GroupsProps[]>([])
 
   const { 'uni-groups.userAlreadyAlerted': userAlreadyAlerted } = parseCookies()
   console.log(userAlreadyAlerted)
@@ -34,20 +35,17 @@ export function Home() {
     getGroups()
   }, [])
 
-  useEffect(() => {
-    if(searchValue.length > 0) {
-        setFilteredGroups(groups.filter(group => group.title.toLowerCase().includes(searchValue.toLowerCase())));
-    } else {
-      setFilteredGroups(groups)
-    }
-}, [searchValue])
-
   async function getGroups() {
     const { data } = await api.get('subject')
     setGroups(data.subjects)
-    setFilteredGroups(data.subjects)
     setLoading(false)
   }
+
+  const search = searchValue.toLowerCase()
+  const filteredGroups = groups.filter(group =>
+    (selectedCourse === ALL_COURSES || group.courseId === Number(selectedCourse))
+    && group.title.toLowerCase().includes(search)
+  )
   return (
     <>
       <Helmet title="Home" />

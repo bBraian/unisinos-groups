@@ -15,6 +15,8 @@ import { NotFound } from './pages/error/NotFound';
 import { NotAuthorized } from './pages/error/NotAuthorized';
 import { InDevelopment } from './pages/error/InDevelopment';
 import { AdminFeedback } from './pages/app/admin/feedbacks';
+import { AdminGroups } from './pages/app/admin/groups';
+import { AdminCourses } from './pages/app/admin/courses';
 
 export function Router() {
   const { loading, user } = useContext(AuthContext)
@@ -42,6 +44,8 @@ export function Router() {
           </ProtectedRoute>
         }>
         <Route path='' element={<Admin />} />
+        <Route path='groups' element={<AdminGroups />} />
+        <Route path='courses' element={<AdminCourses />} />
         <Route path='pr' element={<PullRequests />} />
         <Route path='feedback' element={<AdminFeedback />} />
       </Route>

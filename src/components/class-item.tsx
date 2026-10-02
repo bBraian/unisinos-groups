@@ -38,9 +38,9 @@ interface AppLinkProps {
 interface ClassItemProps {
   props: {
     id: number;
-    course: number;
+    courseId: number;
     title: string;
-    image: string;
+    image: string | null;
     whatsappLinks: AppLinkProps[];
     driveLinks: AppLinkProps[];
   }
